@@ -142,7 +142,6 @@ const Header = styled.span`
     py-6 mt-6
     border-r
     border-r-[rgba(100, 150, 255, 1)]
-   //  border-r-[rgba(133, 59, 206, 0.6)]
     border-t-transparent border-b-transparent
 
   `}

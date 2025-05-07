@@ -1,81 +1,76 @@
-// import tw from "twin.macro";
-// import { Header } from "./Components/ui/header/Header";
-// import { useEffect, useRef } from "react";
-// import WelcomeSection from "./Sections/WelcomeSection";
-// import WorkSection from "./Sections/WorkSection";
-// import SkillsSection from "./Sections/SkillsSection";
-// import ProjectsSection from "./Sections/QuickMessage";
-// import QuickMessage from "./Sections/QuickMessage";
+import tw from "twin.macro";
+import { Header } from "./Components/ui/header/Header";
+import { useCallback, useEffect, useRef, useState } from "react";
+import WelcomeSection from "./Sections/WelcomeSection";
+import WorkSection from "./Sections/WorkSection";
+import SkillsSection from "./Sections/SkillsSection";
+import QuickMessage from "./Sections/QuickMessage";
 
-// const HomePage: React.FC = () => {
-//     // store the real mouse position here
-//     const mousePos = useRef({ x: 0, y: 0 });
-//     // store the smoothed position here
-//     const smoothPos = useRef({ x: 0, y: 0 });
-//     const overlayRef = useRef<HTMLDivElement>(null);
+const HomePage: React.FC = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
 
-//     const smoothing = 0.01;
+    const requestRef = useRef<number | undefined>(undefined);
+    const smoothing = 0.04;
 
-//     useEffect(() => {
-//         let frameId: number;
+    const animate = useCallback(() => {
+        setSmoothPosition((prev) => ({
+            x: prev.x + (mousePosition.x - prev.x) * smoothing,
+            y: prev.y + (mousePosition.y - prev.y) * smoothing,
+        }));
+        requestRef.current = requestAnimationFrame(animate);
+    }, [mousePosition, smoothing]);
 
-//         function animate() {
-//             // compute a 1-dimensional spring for both axes
-//             smoothPos.current.x +=
-//                 (mousePos.current.x - smoothPos.current.x) * smoothing;
-//             smoothPos.current.y +=
-//                 (mousePos.current.y - smoothPos.current.y) * smoothing;
+    useEffect(() => {
+        requestRef.current = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(requestRef.current!);
+    }, [animate]);
 
-//             // directly update the overlay’s style
-//             if (overlayRef.current) {
-//                 overlayRef.current.style.background = `
-//           radial-gradient(
-//             circle at ${smoothPos.current.x}px ${smoothPos.current.y}px,
-//             rgba(0,255,0,0.2) 5px,
-//             transparent 200px
-//           )
-//         `;
-//             }
+    const handleMouseMove = (e: React.MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
-//             frameId = requestAnimationFrame(animate);
-//         }
+    const backgroundCells = Array.from({ length: 4000 });
 
-//         frameId = requestAnimationFrame(animate);
-//         return () => cancelAnimationFrame(frameId);
-//     }, []);
+    return (
+        <div
+            onMouseMove={handleMouseMove}
+            className="box-border overflow-x-visible"
+        >
+            {/* Light follows smooth cursor position */}
+            <div
+                className="pointer-events-none fixed inset-0 z-10"
+                style={{
+                    background: `radial-gradient(circle at ${smoothPosition.x}px ${smoothPosition.y}px, rgba(0,255,0,0.2), 50px, transparent 200px)`,
+                    mixBlendMode: "screen",
+                }}
+            />
+            <PageContainer>
+                <GridLayout>
+                    {backgroundCells.map((_, i) => (
+                        <div
+                            key={i}
+                            className="
+                            border border-[#030b0a] transition ease-out
+                            hover:rounded-[12%] hover:border-[#121212]
+                          "
+                        />
+                    ))}
+                </GridLayout>
+                <div className="flex flex-col w-full min-h-screen">
+                    <Header />
+                    <WelcomeSection />
+                    <WorkSection />
+                    <SkillsSection />
+                    <QuickMessage />
+                </div>
+            </PageContainer>
+        </div>
+    );
+};
 
-//     // onMouseMove just updates the ref — no re-render
-//     const handleMouseMove = (e: React.MouseEvent) => {
-//         mousePos.current.x = e.clientX;
-//         mousePos.current.y = e.clientY;
-//     };
+export default HomePage;
 
-//     // still 4000 cells but no per-cell state
-//     const backgroundCells = Array.from({ length: 4000 });
+const PageContainer = tw.div`h-[100%] w-[100%] relative`;
 
-//     return (
-//         <div onMouseMove={handleMouseMove} className="box-border ">
-//             {/* Imperative overlay — React never re-renders for this */}
-//             <div
-//                 ref={overlayRef}
-//                 className="pointer-events-none fixed inset-0 z-10"
-//                 style={{ mixBlendMode: "screen" }}
-//             />
-
-//             <PageContainer>
-//                 <div className="flex flex-col w-full min-h-screen">
-//                     <Header />
-//                     <WelcomeSection />
-//                     <WorkSection />
-//                     <SkillsSection />
-//                     <QuickMessage />
-//                 </div>
-//             </PageContainer>
-//         </div>
-//     );
-// };
-
-// export default HomePage;
-
-// const PageContainer = tw.div`h-[100%] w-[100%] relative`;
-// const GridLayout = tw.div`absolute inset-0 grid grid-cols-80 grid-rows-50 pointer-events-none`;
+const GridLayout = tw.div` w-[100%] h-[100%] grid grid-cols-80 grid-rows-50 inset-0 absolute pointer-events-none`;

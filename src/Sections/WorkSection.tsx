@@ -6,7 +6,7 @@ import styled, { css, keyframes } from "styled-components";
 
 const WorkSection: React.FC = () => {
     const [headerAnimation, setHeaderAnimation] = useState(false);
-    const [onView, setOnView] = useState<boolean[]>([false, false, false]); // Initialize state based on the number of cards
+    const [onView, setOnView] = useState<boolean[]>([false, false, false]);
     const cardRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const WorkSection: React.FC = () => {
                     }
                 });
             },
-            { threshold: [0, 0.9] } // 0 and 0.5 thresholds
+            { threshold: [0, 0.9] }
         );
 
         const currentCardRef = cardRef.current;
@@ -200,18 +200,17 @@ const pulse = keyframes`
   }
 `;
 
-// Gradients: subtle shift toward the original greenish tone
 const bulletGradients = [
     {
         base: "linear-gradient(135deg, rgba(33, 135, 108, 1), rgba(33, 135, 108, 1))",
         highlight: "linear-gradient(135deg, #66ffc4, #33d9a6)",
     },
     {
-        base: "linear-gradient(135deg, rgba(10, 90, 100, 1), rgba(28, 140, 113, 1))", // slightly more bluish
+        base: "linear-gradient(135deg, rgba(10, 90, 100, 1), rgba(28, 140, 113, 1))",
         highlight: "linear-gradient(135deg, #7ffcc7, #33c0ae)",
     },
     {
-        base: "linear-gradient(135deg, rgba(10, 50, 100, 1), rgba(23, 145, 118, 1))", // even more bluish
+        base: "linear-gradient(135deg, rgba(10, 50, 100, 1), rgba(23, 145, 118, 1))",
         highlight: "linear-gradient(135deg, #9ffcd0, #33c2b7)",
     },
 ];
