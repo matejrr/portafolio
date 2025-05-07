@@ -18,7 +18,6 @@ const BeamExample: React.FC = () => {
 
 export default BeamExample;
 
-// Keyframes for smooth vertical movement
 const float = keyframes`
   0% {
     transform: translateY(0);
@@ -31,7 +30,6 @@ const float = keyframes`
   }
 `;
 
-// Styled light beam
 const LightBeam = styled.div`
     width: 2px;
     height: 250px;

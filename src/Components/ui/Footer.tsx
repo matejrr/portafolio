@@ -9,21 +9,18 @@
 
 // const Footer: FC<FooterProps> = ({ isDarkMode }) => {
 //     const defaultInstOptions = {
-//         loop: true, // Loop the animation
-//         autoplay: true, // Autoplay the animation
-//         animationData: AnimationInstagaramLogo, // JSON animation data
+//         loop: true,
+//         autoplay: true,
+//         animationData: AnimationInstagaramLogo,
 //         rendererSettings: {
-//             preserveAspectRatio: "xMidYMid slice", // Adjust this based on how you want the animation to be scaled
-//         },
-//     };
+//             preserveAspectRatio: "xMidYMid slice",
 
 //     const defaultFaceOptions = {
-//         loop: true, // Loop the animation
-//         autoplay: true, // Autoplay the animation
-//         animationData: AnimationFacebookLogo, // JSON animation data
+//         loop: true,
+//         autoplay: true,
+//         animationData: AnimationFacebookLogo,
 //         rendererSettings: {
-//             preserveAspectRatio: "xMidYMid slice", // Adjust this based on how you want the animation to be scaled
-//         },
+//             preserveAspectRatio: "xMidYMid slice",
 //     };
 
 //     return (

@@ -18,7 +18,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
                     inView ? "opacity-100" : "opacity-0",
 
-                    // any extra classes
                     className
                 )}
                 {...props}

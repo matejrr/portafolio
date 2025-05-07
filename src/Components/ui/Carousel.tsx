@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 import { Logos } from "./Logos";
 
-// Duplicate cards for seamless scrolling
 const {
     bootstrap,
     figma,
