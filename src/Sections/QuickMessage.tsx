@@ -28,6 +28,7 @@ const QuickMessage: React.FC = () => {
                                 <Text inView={inView}>
                                     Feel free to reach out with any questions
                                 </Text>
+                                <TextMobile inView={inView}>DM me</TextMobile>
                             </ObserverWrapper>
                         </LeftSide>
 
@@ -66,7 +67,7 @@ const QuickMessage: React.FC = () => {
 export default QuickMessage;
 
 const Container = styled.div`
-    ${tw`flex flex-col gap-3 w-[100%] min-h-[20rem] mt-[-1.5rem] rounded-[10px] pr-20 z-10 [box-shadow: inset -750px 50px 100px black, inset 750px 50px 100px black]`}
+    ${tw`flex flex-col gap-3 self-center w-[100%] mt-5 min-h-[20rem] rounded-[10px] px-14 z-10 [box-shadow: inset -750px 50px 100px black, inset 750px 50px 100px black]`}
 
     @media (max-width: 1355px) {
         width: 95%;
@@ -74,35 +75,8 @@ const Container = styled.div`
     @media (max-width: 1093px) {
         margin-top: 3rem;
     }
-    @media (max-width: 810px) {
-        margin-top: 6rem;
-    }
-    @media (max-width: 800px) {
-        margin-top: 9rem;
-    }
-    @media (max-width: 710px) {
-        margin-top: 12rem;
-    }
-    @media (max-width: 645px) {
-        margin-top: 16rem;
-    }
-    @media (max-width: 590px) {
-        margin-top: 18rem;
-    }
-    @media (max-width: 510px) {
-        margin-top: 24rem;
-    }
-    @media (max-width: 490px) {
-        margin-top: 35rem;
-    }
-    @media (max-width: 440px) {
-        margin-top: 42rem;
-    }
-    @media (max-width: 385px) {
-        margin-top: 48rem;
-    }
-    @media (max-width: 345px) {
-        margin-top: 60rem;
+    @media (max-width: 1065px) {
+        padding-rioght: 0;
     }
 `;
 
@@ -196,6 +170,25 @@ const Text = styled.span<{ inView: boolean }>`
     }
 `;
 
+const TextMobile = styled.span<{ inView: boolean }>`
+    ${tw`text-[1rem] tracking-[1.5px] leading-[1rem] text-gray-200 text-right`}
+    opacity: 0;
+    display: none;
+    transform: translateX(-3rem);
+
+    ${({ inView }) =>
+        inView &&
+        css`
+            animation: ${slideText} 4s ease-in-out forwards;
+            animation-delay: 0.5s;
+        `}
+
+    @media (max-width: 414px) {
+        display: inline-block;
+        margin-left: 35px;
+    }
+`;
+
 const pulse = keyframes`
   0%   { transform: scale(1);   opacity: 0.6 }
   100% { transform: scale(3.6); opacity: 0 }
@@ -241,6 +234,7 @@ const ResponsiveDiv = styled.div`
     display: flex;
     flex-direction: row;
     gap: 6rem;
+    width: 100%;
 
     @media (max-width: 1065px) {
         display: flex;

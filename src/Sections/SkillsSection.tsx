@@ -70,7 +70,7 @@ const SkillsSection: React.FC = () => {
 export default SkillsSection;
 
 const Container = styled.div`
-    ${tw`relative flex flex-col self-center pt-4 mb-7 z-[10] gap-16 w-[90%] h-[130vh] backdrop-hue-rotate-90 pointer-events-none [box-shadow: -100px 100px 50px black, 100px 100px 50px black]`}
+    ${tw`relative flex flex-col self-center pt-4 mb-7 z-[10] gap-16 w-[90%] h-[100%] backdrop-hue-rotate-90 pointer-events-none [box-shadow: -100px 100px 50px black, 100px 100px 50px black]`}
     background-image: url(${DesignPatterns.skillsDesign1});
     background-size: contain;
     background-repeat: no-repeat;
@@ -197,10 +197,14 @@ const Context = styled.span`
 `;
 
 const SkillsWrapper = styled.div`
-    ${tw`grid grid-cols-1 md:grid-cols-2  self-center gap-6 ml-14 w-[60%] z-10`}
+    ${tw`grid grid-cols-1 md:grid-cols-2 self-center gap-6 ml-14 w-[60%] z-10`}
 
     @media (max-width: 1420px) {
         width: 70%;
+    }
+    @media (max-width: 800px) {
+        width: 70%;
+        margin-left: 0;
     }
 `;
 
