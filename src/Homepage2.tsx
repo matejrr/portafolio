@@ -6,7 +6,7 @@ import WorkSection from "./Sections/WorkSection";
 import SkillsSection from "./Sections/SkillsSection";
 import QuickMessage from "./Sections/QuickMessage";
 
-const HomePage: React.FC = () => {
+const HomePage2: React.FC = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
 
@@ -69,7 +69,7 @@ const HomePage: React.FC = () => {
     );
 };
 
-export default HomePage;
+export default HomePage2;
 
 const PageContainer = tw.div`h-[100%] w-[100%] relative`;
 
