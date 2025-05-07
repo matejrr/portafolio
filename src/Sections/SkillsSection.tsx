@@ -107,11 +107,14 @@ const Container = styled.div`
     @media (max-width: 1420px) {
         background-position: -27.5rem 5rem;
     }
-    @media (max-width: 1195px) {
+    @media (max-width: 1355px) {
         background-position: -29.5rem 5rem;
     }
-    @media (max-width: 1150px) {
+    @media (max-width: 1195px) {
         background-position: -32.5rem 5rem;
+    }
+    @media (max-width: 1150px) {
+        background-position: -34.5rem 5rem;
     }
 `;
 
