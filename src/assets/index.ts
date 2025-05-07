@@ -1,0 +1,23 @@
+export const images = {
+    react: new URL("./react.svg", import.meta.url).href,
+    nodejs: new URL("./nodejs.svg", import.meta.url).href,
+    mongodbcon: new URL("./mongodbicon.svg", import.meta.url).href,
+    graphQL: new URL("./graphqllogo.svg", import.meta.url).href,
+    android: new URL("./Android.svg", import.meta.url).href,
+    github: new URL("./github.svg", import.meta.url).href,
+    firebase: new URL("./firebase.svg", import.meta.url).href,
+    typescript: new URL("./typescript.svg", import.meta.url).href,
+    python: new URL("./python.svg", import.meta.url).href,
+    microsoftsqlserver: new URL("./microsoftsqlserver.svg", import.meta.url)
+        .href,
+    html: new URL("./html.svg", import.meta.url).href,
+    css: new URL("./CSS.svg", import.meta.url).href,
+    tailwind: new URL("./tailwind.svg", import.meta.url).href,
+    vitejs: new URL("./vitejs.svg", import.meta.url).href,
+    blender: new URL("./blender.svg", import.meta.url).href,
+    figma: new URL("./figma.svg", import.meta.url).href,
+    materialui: new URL("./materialui.svg", import.meta.url).href,
+    visualstudiocode: new URL("./visualstudiocode.svg", import.meta.url).href,
+    bootstrap: new URL("./bootstrap.svg", import.meta.url).href,
+    axios: new URL("./axios.svg", import.meta.url).href,
+};

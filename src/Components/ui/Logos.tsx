@@ -1,161 +1,142 @@
-import react from "../../assets/react.svg";
-import nodejs from "../../assets/nodejs.svg";
-import mongodbcon from "../../assets/mongodbicon.svg";
-import graphqllogo from "../../assets/graphqllogo.svg";
-import android from "../../assets/Android.svg";
-import github from "../../assets/github.svg";
-import firebase from "../../assets/firebase.svg";
-import typescript from "../../assets/typescript.svg";
-import python from "../../assets/python.svg";
-import microsoftsqlserver from "../../assets/microsoftsqlserver.svg";
-import html from "../..//assets/html.svg";
-import css from "../../assets/CSS.svg";
-import tailwindcsswordmark from "../../assets/tailwind.svg";
-import vitejs from "../../assets/vitejs.svg";
-import blender from "../../assets/blender.svg";
-import figma from "../../assets/figma.svg";
-import materialui from "../../assets/materialui.svg";
-import visualstudiocode from "../../assets/visualstudiocode.svg";
-import bootstrap from "../../assets/bootstrap.svg";
-import axios from "../../assets/axios.svg";
+import { images } from "@/assets";
 
 export const Logos = {
     react: () => (
         <img
-            src={react}
+            src={images.react}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     nodejs: () => (
         <img
-            src={nodejs}
+            src={images.nodejs}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     mongodb: () => (
         <img
-            src={mongodbcon}
+            src={images.mongodbcon}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     graphql: () => (
         <img
-            src={graphqllogo}
+            src={images.graphQL}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     androidStudio: () => (
         <img
-            src={android}
+            src={images.android}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     github: () => (
         <img
-            src={github}
+            src={images.github}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     firebase: () => (
         <img
-            src={firebase}
+            src={images.firebase}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     typescript: () => (
         <img
-            src={typescript}
+            src={images.typescript}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     python: () => (
         <img
-            src={python}
+            src={images.python}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     sqlserver: () => (
         <img
-            src={microsoftsqlserver}
+            src={images.microsoftsqlserver}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     html: () => (
         <img
-            src={html}
+            src={images.html}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     css: () => (
         <img
-            src={css}
+            src={images.css}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     tailwind: () => (
         <img
-            src={tailwindcsswordmark}
+            src={images.tailwind}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     vite: () => (
         <img
-            src={vitejs}
+            src={images.vitejs}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     blender: () => (
         <img
-            src={blender}
+            src={images.blender}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     figma: () => (
         <img
-            src={figma}
+            src={images.figma}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     materialui: () => (
         <img
-            src={materialui}
+            src={images.materialui}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     vscode: () => (
         <img
-            src={visualstudiocode}
+            src={images.visualstudiocode}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     bootstrap: () => (
         <img
-            src={bootstrap}
+            src={images.bootstrap}
             alt="React logo"
             className="w-full h-full object-contain"
         />
     ),
     axios: () => (
         <img
-            src={axios}
+            src={images.axios}
             alt="React logo"
             className="w-full h-full object-contain"
         />
