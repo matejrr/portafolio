@@ -29,8 +29,6 @@ const DeliveryApp: React.FC<ProjectSectionProps> = () => {
         return () => video.removeEventListener("timeupdate", handler);
     }, []);
 
-    console.log("currentTime", currentTime);
-
     const deliveryAppData = projectsData.find(
         (project) => project.projectName === "Delivery App"
     );
