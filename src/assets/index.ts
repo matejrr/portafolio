@@ -27,6 +27,7 @@ export const images = {
     php: new URL("./php.svg", import.meta.url).href,
     javascript: new URL("./javascript.svg", import.meta.url).href,
     mariadb: new URL("./mariadb.svg", import.meta.url).href,
+    personalPhoto: new URL("./personalPhoto", import.meta.url).href,
 };
 
 export const demos = {
