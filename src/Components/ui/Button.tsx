@@ -20,7 +20,7 @@ const buttonVariants = cva(
                 welcome:
                     "border border-[#0e6251] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102",
                 projects:
-                    "border border-[#6496FF] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102",
+                    "border border-[#00E5FF] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102",
                 link: "text-primary underline-offset-4 hover:underline",
             },
             size: {

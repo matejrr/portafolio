@@ -1,50 +1,39 @@
 import tw from "twin.macro";
-import { Header } from "./Components/ui/header/Header";
-import { useCallback, useEffect, useRef, useState } from "react";
+// import { useCallback, useEffect, useRef, useState } from "react";
 import WelcomeSection from "./Sections/WelcomeSection";
-import WorkSection from "./Sections/WorkSection";
+import WorkSection from "./Sections/WorksSection";
 import SkillsSection from "./Sections/SkillsSection";
 import QuickMessage from "./Sections/QuickMessage";
+import ProjectsSection from "./Sections/ProjectsSection";
+import { Header } from "./Components/layout/header/Header";
 
 const HomePage2: React.FC = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
+    // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    // const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
 
-    const requestRef = useRef<number | undefined>(undefined);
-    const smoothing = 0.04;
+    // const requestRef = useRef<number | undefined>(undefined);
+    // const smoothing = 0.04;
 
-    const animate = useCallback(() => {
-        setSmoothPosition((prev) => ({
-            x: prev.x + (mousePosition.x - prev.x) * smoothing,
-            y: prev.y + (mousePosition.y - prev.y) * smoothing,
-        }));
-        requestRef.current = requestAnimationFrame(animate);
-    }, [mousePosition, smoothing]);
-
-    useEffect(() => {
-        requestRef.current = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(requestRef.current!);
-    }, [animate]);
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    // const animate = useCallback(() => {
+    //     setSmoothPosition((prev) => ({
+    //         x: prev.x + (mousePosition.x - prev.x) * smoothing,
+    //         y: prev.y + (mousePosition.y - prev.y) * smoothing,
+    //     }));
+    //     requestRef.current = requestAnimationFrame(animate);
+    // }, [mousePosition, smoothing]);
 
     const backgroundCells = Array.from({ length: 4000 });
 
     return (
-        <div
-            onMouseMove={handleMouseMove}
-            className="box-border overflow-x-visible"
-        >
+        <div className="box-border overflow-x-visible">
             {/* Light follows smooth cursor position */}
-            <div
+            {/* <div
                 className="pointer-events-none fixed inset-0 z-10"
                 style={{
-                    background: `radial-gradient(circle at ${smoothPosition.x}px ${smoothPosition.y}px, rgba(0,255,0,0.2), 50px, transparent 200px)`,
+                    background: `radial-gradient(circle at ${smoothPosition.x}px ${smoothPosition.y}px, rgba(0,255,0,0.2), 20px, transparent 150px)`,
                     mixBlendMode: "screen",
                 }}
-            />
+            /> */}
             <PageContainer>
                 <GridLayout>
                     {backgroundCells.map((_, i) => (
@@ -57,12 +46,13 @@ const HomePage2: React.FC = () => {
                         />
                     ))}
                 </GridLayout>
-                <div className="flex flex-col w-full min-h-screen">
+                <div className="flex flex-col w-full min-h-screen overflow-x-clip">
                     <Header />
                     <WelcomeSection />
                     <WorkSection />
                     <SkillsSection />
                     <QuickMessage />
+                    <ProjectsSection />
                 </div>
             </PageContainer>
         </div>

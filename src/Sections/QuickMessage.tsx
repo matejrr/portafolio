@@ -1,11 +1,11 @@
 import { InView } from "react-intersection-observer";
 import styled, { keyframes, css } from "styled-components";
 import tw from "twin.macro";
-import { Avatar } from "@/Components/ui/avatar";
 import personalPhoto from "../assets/personalPhoto.jpg";
 import { Input } from "@/Components/ui/Input";
 import { Button } from "@/Components/ui/Button";
 import { useState } from "react";
+import { Avatar } from "@/Components/shared/avatar";
 
 const QuickMessage: React.FC = () => {
     const [quickMessage, setQuickMessage] = useState("");
@@ -26,7 +26,8 @@ const QuickMessage: React.FC = () => {
                                     </AvatarWrapper>
                                 </div>
                                 <Text inView={inView}>
-                                    Feel free to reach out with any questions
+                                    Want to know more about any specific
+                                    section?
                                 </Text>
                                 <TextMobile inView={inView}>DM me</TextMobile>
                             </ObserverWrapper>
@@ -38,10 +39,19 @@ const QuickMessage: React.FC = () => {
                                 style={{
                                     fontSize: "0.9rem",
                                     letterSpacing: "0.7px",
-                                    padding: "1.3rem 1rem",
-                                    border: quickMessage
-                                        ? "1.5px solid rgba(100, 150, 255, 0.8)"
-                                        : "1.5px solid rgba(100, 150, 255, 0.5)",
+                                    padding: "1.5rem 1rem",
+                                    borderTop: quickMessage
+                                        ? "2px solid rgba(30,210,255, 0.6)"
+                                        : "1.5px solid rgba(30,190,255, 0.4)",
+                                    borderRight: quickMessage
+                                        ? "2px solid rgba(30,210,255, 0.6)"
+                                        : "1.5px solid rgba(30,190,255, 0.4)",
+                                    borderBottom: quickMessage
+                                        ? "2px solid rgba(30,210,255, 0.6)"
+                                        : "1.5px solid rgba(30,190,255, 0.4)",
+                                    borderLeft: quickMessage
+                                        ? "2px solid rgba(30,210,255, 0.6)"
+                                        : "1.5px solid rgba(30,190,255, 0.4)",
                                     transition: "border 1s ease-in-out",
                                 }}
                                 name="message"
@@ -57,7 +67,12 @@ const QuickMessage: React.FC = () => {
 
             <ButtonSection>
                 {quickMessage && (
-                    <QuickEmailButton variant="projects">Send</QuickEmailButton>
+                    <QuickEmailButton
+                        style={{ borderColor: "#00E5FF" }}
+                        variant="projects"
+                    >
+                        Send
+                    </QuickEmailButton>
                 )}
             </ButtonSection>
         </Container>
@@ -67,7 +82,8 @@ const QuickMessage: React.FC = () => {
 export default QuickMessage;
 
 const Container = styled.div`
-    ${tw`flex flex-col gap-3 self-center w-[100%] mt-5 min-h-[20rem] rounded-[10px] px-14 z-10 [box-shadow: inset -750px 50px 100px black, inset 750px 50px 100px black]`}
+    ${tw`flex flex-col gap-3 self-center w-[100%] min-h-[14rem] pt-14 justify-center  rounded-[10px] pl-[2.4rem] pr-14 z-20
+    [box-shadow: inset -800px 50px 100px black, inset 800px 50px 100px black, -50px 50px 100px black]`}
 
     @media (max-width: 1355px) {
         width: 95%;
@@ -76,29 +92,33 @@ const Container = styled.div`
         margin-top: 3rem;
     }
     @media (max-width: 1065px) {
-        padding-rioght: 0;
+        padding-right: 50px
+        padding-left: 50px;
     }
 `;
 
 const LeftSide = styled.div`
-    ${tw`flex flex-row justify-center items-center min-w-[44.5%] py-3 gap-2 text-md tracking-wide [letter-spacing: 0.2rem]`}
+    ${tw`flex flex-row justify-center items-center min-w-[44.5%] gap-2 h-full text-md tracking-wide [letter-spacing: 0.2rem]`}
 
     @media (max-width: 414px) {
         display: flex;
         justify-content: left;
     }
 `;
-
 const ObserverWrapper = styled.div`
     ${tw`flex items-center gap-5`}
 `;
 
 const RightSide = styled.div`
-    ${tw`flex flex-row flex-1 items-center text-white w-[100%]`}
+    ${tw`flex flex-row flex-1 items-center text-white w-[100%] pl-14`}
+
+    @media (max-width: 1065px) {
+        padding-left: 0;
+    }
 `;
 
 const ButtonSection = styled.div`
-    ${tw` relative flex self-center w-full text-white`}
+    ${tw`relative flex self-center w-full text-white`}
 `;
 
 const QuickEmailButton = tw(Button)`
@@ -106,23 +126,27 @@ const QuickEmailButton = tw(Button)`
     h-[clamp(2rem, 2.5vw, 2.3rem)]
     tracking-widest
     hover:cursor-pointer
+    hover:border-[0.1rem]
     animate-fade-in
     motion-reduce:opacity-100
     absolute
-    right-0 top-[-2rem]
+    right-0
+    mt-3
     py-[1.2rem]
 
 `;
 
 const popAvatar = keyframes`
-  0%   { opacity: 0; width: 0; height: 0 }
-  20%  { opacity: 1; width: 6.5rem; height: 6.5rem }
-  40%  { opacity: 1; width: 6rem; height: 6rem }
- 100%  { opacity: 1; width: 6rem; height: 6rem; }
+  0%   { opacity: 0; width: 0; height: 0; }
+  20%  { opacity: 1; width: 6.5rem; height: 6.5rem; }
+  25%  { width: 6rem; height: 6rem; }
+  75%  { width: 6rem; height: 6rem; }
+  80%  { opacity: 1; width: 6rem; height: 6rem; }
+  90%  { opacity: 1; width: 6.5rem; height: 6.5rem; }
+ 100%  { opacity: 0; width: 0; height: 0; }
 `;
-
 const AvatarWrapper = styled.div<{ inView: boolean }>`
-    ${tw` rounded-full z-10`}
+    ${tw`rounded-full z-10`}
     width: 0;
     height: 0;
     opacity: 0;
@@ -130,9 +154,8 @@ const AvatarWrapper = styled.div<{ inView: boolean }>`
     ${({ inView }) =>
         inView &&
         css`
-            animation: ${popAvatar} 2s ease-in-out forwards;
+            animation: ${popAvatar} 4.5s ease-out forwards;
             /* you can delay the **start** of the pop if you like: */
-            animation-delay: 0.3s;
         `}
     @media (max-width: 490px) {
         display: none;
@@ -141,16 +164,15 @@ const AvatarWrapper = styled.div<{ inView: boolean }>`
 
 /* your text slides in/out exactly as before */
 const slideText = keyframes`
-  0%   { opacity: 0; transform: translateX(-3rem); }
-  25%  { opacity: 1; transform: translateX( 1rem); }
-  75%  { opacity: 1; transform: translateX( 1rem); }
-  100% { opacity: 0; transform: translateX(-3rem); }
+  0%, 25%   { opacity: 0; transform: translateX(-3rem); }
+  30%, 85%  { opacity: 1; transform: translateX(1rem);  }
+  90%,100%  { opacity: 0; transform: translateX(-3rem)}
 `;
 
 const Text = styled.span<{ inView: boolean }>`
     ${tw`text-[1rem] tracking-[1.5px] leading-[1rem] text-gray-200 text-right`}
     opacity: 0;
-    transform: translateX(-3rem);
+    transform: translateX(-5rem);
 
     ${({ inView }) =>
         inView &&
@@ -198,19 +220,18 @@ const BulletPoint = styled.div<{ inView: boolean }>`
     position: relative;
     width: 16px;
     height: 16px;
-    margin-left: -8px;
     border-radius: 50%;
     background: linear-gradient(
         135deg,
-        rgba(100, 150, 255, 0.5),
-        rgba(100, 150, 255, 0.5)
+        rgba(30, 210, 255, 0.5),
+        rgba(30, 210, 255, 0.5)
     );
 
     ${({ inView }) =>
         inView &&
         css`
-            background: linear-gradient(135deg, #6496ff, #00e5ff);
-            box-shadow: 0 0 10px #6496ff, 0 0 20px #6496ff;
+            background: linear-gradient(135deg, #7a79ff, #5cdbff);
+            box-shadow: 0 0 10px #7a79ff, 0 0 20px #7a79ff;
         `}
 
     &::after {
@@ -233,12 +254,15 @@ const BulletPoint = styled.div<{ inView: boolean }>`
 const ResponsiveDiv = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 6rem;
     width: 100%;
 
     @media (max-width: 1065px) {
         display: flex;
+        align-items: start;
         flex-direction: column;
-        gap: 0rem;
+        align-self: center;
+        justify-content: center;
+        gap: 2rem;
+        margin: 0px 100px;
     }
 `;

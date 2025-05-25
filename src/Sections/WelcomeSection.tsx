@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import tw from "twin.macro";
-import Carousel from "../Components/ui/Carousel";
 import styled from "styled-components";
 import { Button } from "../Components/ui/Button";
+import LogosCarousel from "../Components/specific/WelcomeSection/LogosCarousel";
 
 const WelcomeSection: React.FC = () => {
     const [animate, setAnimate] = useState<boolean>(false);
@@ -31,7 +31,7 @@ const WelcomeSection: React.FC = () => {
             </TopSection>
             <WelcomeText2 animate={animate}>WELCOME</WelcomeText2>
             <BottomSection>
-                <Carousel />
+                <LogosCarousel />
             </BottomSection>
         </SectionContainer>
     );
@@ -180,26 +180,23 @@ const Line = tw.hr`
 const BottomSection = styled.div`
     ${tw`min-h-max w-full mt-3.5 mb-[14rem]`}
 
-    @media (max-width: 900px) {
-        margin-top: 4rem;
+    @media (max-width: 905px) {
+        margin-top: 5rem;
     }
-    @media (max-width: 652px) {
-        margin-top: 7rem;
+    @media (max-width: 750px) {
+        margin-top: 6rem;
+    }
+    @media (max-width: 650px) {
+        margin-top: 8rem;
     }
     @media (max-width: 565px) {
-        margin-top: 15rem;
+        margin-top: 16rem;
     }
     @media (max-width: 483px) {
-        margin-top: 18rem;
-    }
-    @media (max-width: 415px) {
         margin-top: 20rem;
     }
-    @media (max-width: 390px) {
-        margin-top: 22rem;
-    }
-    @media (max-width: 349px) {
-        margin-top: 25rem;
+    @media (max-width: 415px) {
+        margin-top: 28rem;
     }
 `;
 

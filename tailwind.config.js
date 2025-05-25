@@ -56,7 +56,7 @@ export default {
                         highlight: "rgba(16, 125, 160, 1)",
                     },
                     projects: {
-                        primary: "rgba(103, 72, 206, 1)",
+                        primary: "rgba(30, 72, 206, 0.7)",
                         secondary: "rgba(129, 69, 181, 0.9)",
                         highlight: "rgba(133, 59, 206, 1)",
                     },

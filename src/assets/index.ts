@@ -14,10 +14,21 @@ export const images = {
     css: new URL("./CSS.svg", import.meta.url).href,
     tailwind: new URL("./tailwind.svg", import.meta.url).href,
     vitejs: new URL("./vitejs.svg", import.meta.url).href,
-    blender: new URL("./blender.svg", import.meta.url).href,
     figma: new URL("./figma.svg", import.meta.url).href,
     materialui: new URL("./materialui.svg", import.meta.url).href,
     visualstudiocode: new URL("./visualstudiocode.svg", import.meta.url).href,
     bootstrap: new URL("./bootstrap.svg", import.meta.url).href,
     axios: new URL("./axios.svg", import.meta.url).href,
+    deliveryApp: new URL("./DeliveryApp.png", import.meta.url).href,
+    onlineGallery: new URL("./online-gallery.png", import.meta.url).href,
+    biometricReg: new URL("./Biometric.png", import.meta.url).href,
+    portfolio: new URL("./portfolio.png", import.meta.url).href,
+    reactNative: new URL("./reactNative.svg", import.meta.url).href,
+    php: new URL("./php.svg", import.meta.url).href,
+    javascript: new URL("./javascript.svg", import.meta.url).href,
+    mariadb: new URL("./mariadb.svg", import.meta.url).href,
+};
+
+export const demos = {
+    deliveryApp: new URL("./HOT2EAT.mp4", import.meta.url).href,
 };
