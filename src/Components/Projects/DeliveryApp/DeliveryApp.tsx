@@ -134,11 +134,17 @@ const GridLayout = styled.div`
     @media (max-width: 767px) {
         height: 87rem;
     }
+    @media (max-width: 698px) {
+        height: 88.5rem;
+    }
+    @media (max-width: 689px) {
+        height: 89rem;
+    }
     @media (max-width: 652px) {
         height: 92rem;
     }
     @media (max-width: 664px) {
-        height: 88rem;
+        height: 89rem;
     }
     @media (max-width: 657px) {
         height: 89.5rem;
@@ -147,7 +153,7 @@ const GridLayout = styled.div`
         height: 89rem;
     }
     @media (max-width: 644px) {
-        height: 90rem;
+        height: 92rem;
     }
     @media (max-width: 596px) {
         height: 96rem;
@@ -164,47 +170,56 @@ const GridLayout = styled.div`
     @media (max-width: 531px) {
         height: 96.5rem;
     }
-    @media (max-width: 476px) {
+    @media (max-width: 499px) {
         height: 98.5rem;
+    }
+    @media (max-width: 488px) {
+        height: 100rem;
     }
     @media (max-width: 465px) {
         height: 100rem;
     }
-    @media (max-width: 442px) {
-        height: 100rem;
+    @media (max-width: 450px) {
+        height: 102rem;
     }
     @media (max-width: 436px) {
-        height: 102rem;
+        height: 104rem;
     }
-    @media (max-width: 429px) {
-        height: 102rem;
+    @media (max-width: 431px) {
+        height: 105.5rem;
     }
     @media (max-width: 421px) {
-        height: 103.5rem;
+        height: 106rem;
     }
     @media (max-width: 411px) {
         height: 105rem;
     }
-    @media (max-width: 385px) {
-        height: 106.5rem;
+    @media (max-width: 405px) {
+        height: 107rem;
     }
-    @media (max-width: 377px) {
-        height: 107.5rem;
+    @media (max-width: 395px) {
+        height: 108rem;
     }
-    @media (max-width: 356px) {
-        height: 109.5rem;
+    @media (max-width: 373px) {
+        height: 110rem;
     }
-    @media (max-width: 343px) {
-        height: 111rem;
-    }
-    @media (max-width: 335px) {
+    @media (max-width: 359px) {
         height: 112rem;
     }
-    @media (max-width: 331px) {
+    @media (max-width: 348px) {
         height: 113.5rem;
     }
-    @media (max-width: 327px) {
-        height: 115.5rem;
+    @media (max-width: 342px) {
+        height: 114.5rem;
+    }
+    @media (max-width: 335px) {
+        height: 116rem;
+    }
+    @media (max-width: 330px) {
+        height: 117.5rem;
+    }
+    @media (max-width: 318px) {
+        height: 122.5rem;
     }
 `;
 
@@ -283,29 +298,35 @@ const FlowWrapper = styled.div`
     @media (max-width: 1035px) {
         height: 74%;
     }
+    @media (max-width: 1003px) {
+        height: 72%;
+    }
     @media (max-width: 997px) {
         height: 71%;
     }
     @media (max-width: 989px) {
-        height: 74%;
+        height: 70%;
     }
     @media (max-width: 953px) {
-        height: 72%;
-    }
-    @media (max-width: 946px) {
-        height: 72%;
-    }
-    @media (max-width: 938px) {
-        height: 71%;
-    }
-    @media (max-width: 913px) {
         height: 69%;
     }
-    @media (max-width: 908px) {
+    @media (max-width: 946px) {
         height: 67%;
     }
+    @media (max-width: 938px) {
+        height: 67%;
+    }
+    @media (max-width: 924px) {
+        height: 65%;
+    }
+    @media (max-width: 908px) {
+        height: 63%;
+    }
+    @media (max-width: 903px) {
+        height: 62%;
+    }
     @media (max-width: 894px) {
-        height: 66%;
+        height: 60%;
     }
     @media (max-width: 888px) {
         height: 66%;
@@ -339,16 +360,22 @@ const FlowWrapper = styled.div`
         height: 70%;
     }
     @media (max-width: 652px) {
-        height: 40%;
+        height: 43%;
     }
     @media (max-width: 644px) {
         height: 39%;
     }
+    @media (max-width: 596px) {
+        height: 38%;
+    }
     @media (max-width: 585px) {
         height: 44%;
     }
-    @media (max-width: 408px) {
-        margin-right: 2%;
+    @media (max-width: 531px) {
+        height: 46%;
+    }
+    @media (max-width: 499px) {
+        height: 50%;
     }
 `;
 

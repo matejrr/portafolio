@@ -98,4 +98,7 @@ const Text = styled.h3<{ index: number }>`
     @media (max-width: 805px) {
         width: 100%;
     }
+    @media (max-width: 767px) {
+        width: 95%;
+    }
 `;

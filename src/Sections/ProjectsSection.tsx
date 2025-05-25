@@ -186,14 +186,32 @@ const DeliveryAppWrapper = styled.div`
     @media (max-width: 805px) {
         height: 118vh;
     }
+    @media (max-width: 767px) {
+        height: 230vh;
+    }
     @media (max-width: 644px) {
-        height: 119vh;
+        height: 235vh;
+    }
+    @media (max-width: 596px) {
+        height: 245vh;
+    }
+    @media (max-width: 489px) {
+        height: 250vh;
+    }
+    @media (max-width: 476px) {
+        height: 250vh;
     }
     @media (max-width: 440px) {
-        height: 132vh;
+        height: 280vh;
+    }
+    @media (max-width: 436px) {
+        height: 285vh;
     }
     @media (max-width: 421px) {
-        height: 127vh;
+        height: 245vh;
+    }
+    @media (max-width: 385px) {
+        height: 320vh;
     }
 `;
 
@@ -535,40 +553,70 @@ const FloatingTrigger = styled.div`
         right: 5rem;
     }
     @media (max-width: 805px) {
-        bottom: -4.5rem;
-        right: 1rem;
+        top: 56rem;
+        right: 2rem;
         width: 40px;
         height: 40px;
     }
-    @media (max-width: 643px) {
-        bottom: 1rem;
-        right: 1.5rem;
+    @media (max-width: 689px) {
+        top: 54.5rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+    }
+    @media (max-width: 664px) {
+        top: 55rem;
+        right: 2rem;
+        width: 40px;
+        height: 40px;
+    }
+    @media (max-width: 652px) {
+        top: 54.5rem;
+        right: 2rem;
     }
     @media (max-width: 596px) {
-        bottom: -4.5rem;
-        right: 1rem;
-        width: 40px;
-        height: 40px;
+        top: 56.5rem;
+        right: 2rem;
     }
-    @media (max-width: 583px) {
-        bottom: 1rem;
-        right: 1.5rem;
+    @media (max-width: 586px) {
+        top: 54.5rem;
+        right: 2rem;
+    }
+    @media (max-width: 585px) {
+        top: 51.5rem;
+        right: 2rem;
     }
     @media (max-width: 550px) {
-        bottom: 2rem;
-        right: 1.5rem;
+        top: 51rem;
+        right: 2rem;
     }
     @media (max-width: 440px) {
-        bottom: -4rem;
-        right: 1rem;
+        top: 63rem;
+        right: 2rem;
+    }
+    @media (max-width: 436px) {
+        top: 63.5rem;
+        right: 2rem;
     }
     @media (max-width: 421px) {
-        bottom: -5rem;
-        right: 1rem;
+        top: 63rem;
+        right: 2rem;
+    }
+    @media (max-width: 411px) {
+        top: 62rem;
+        right: 2rem;
     }
     @media (max-width: 377px) {
-        bottom: -5rem;
-        right: 1rem;
+        top: 62rem;
+        right: 2rem;
+    }
+    @media (max-width: 356px) {
+        top: 62.5rem;
+        right: 2rem;
+    }
+    @media (max-width: 332px) {
+        top: 59.5rem;
+        right: 2rem;
     }
 `;
 const FloatingMessage = styled.div<{ visible: boolean }>`
@@ -596,5 +644,8 @@ const FloatingMessage = styled.div<{ visible: boolean }>`
     @media (max-width: 583px) {
         right: 0;
         bottom: -4.3rem;
+    }
+    @media (max-width: 550px) {
+        display: none;
     }
 `;
