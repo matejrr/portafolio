@@ -210,13 +210,7 @@ const DeliveryAppWrapper = styled.div`
         height: 280vh;
     }
     @media (max-width: 436px) {
-        height: 285vh;
-    }
-    @media (max-width: 421px) {
-        height: 245vh;
-    }
-    @media (max-width: 390px) {
-        height: 290vh;
+        height: 240vh;
     }
 `;
 
