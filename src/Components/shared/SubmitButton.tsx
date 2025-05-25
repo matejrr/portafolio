@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "../ui/Button";
 
 const SubmitButton = React.memo(() => {
     return (
