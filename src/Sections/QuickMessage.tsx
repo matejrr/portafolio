@@ -5,7 +5,7 @@ import personalPhoto from "../assets/personalPhoto.jpg";
 import { Input } from "@/Components/ui/Input";
 import { Button } from "@/Components/ui/Button";
 import { useState } from "react";
-import { Avatar } from "@/Components/shared/avatar";
+import { Avatar } from "@/Components/shared/Avatar";
 
 const QuickMessage: React.FC = () => {
     const [quickMessage, setQuickMessage] = useState("");
