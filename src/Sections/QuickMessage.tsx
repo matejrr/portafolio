@@ -207,7 +207,7 @@ const TextMobile = styled.span<{ inView: boolean }>`
 
     @media (max-width: 414px) {
         display: inline-block;
-        margin-left: 35px;
+        margin-left: 5px;
     }
 `;
 

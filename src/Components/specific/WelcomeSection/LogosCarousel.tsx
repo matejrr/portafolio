@@ -55,11 +55,11 @@ const LogosCarousel: React.FC = () => {
             <LogosCarouselTrack>
                 {infiniteCards.map((logo, index) => (
                     <CardWrapper key={index}>
-                        <LeftLine />
+                        <Line />
                         <Card>{logo()}</Card>
-                        <RightLine />
+                        <Line />
                         <div className="absolute inset-0 w-full h-full pointer-events-none z-[-1]">
-                            <div className="absolute top-1/2 right-0 w-40 h-16 bg-[#0e6251] rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
+                            <Light />
                         </div>
                     </CardWrapper>
                 ))}
@@ -92,9 +92,15 @@ const LogosCarouselTrack = styled.div`
     position: relative;
 `;
 
-const LeftLine = tw.hr`
-    border-t border-[#0e6251] w-[80px] self-center z-0
+const Line = styled.hr`
+    ${tw`border-t border-[#0e6251] w-[80px] self-center z-0`}
 
+    @media (max-width: 750px) {
+        width: 55px;
+    }
+    @media (max-width: 565px) {
+        width: 45px;
+    }
 `;
 
 const CardWrapper = styled.div`
@@ -135,9 +141,15 @@ const Card = styled.div`
     }
 `;
 
-const RightLine = tw.hr`
-    border-t border-[#0e6251] w-[80px] self-center z-0
+const Light = styled.div`
+    ${tw`absolute top-1/2 right-0 w-40 h-16 bg-[#0e6251] rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2`}
 
+    @media (max-width: 750px) {
+        width: 100px;
+    }
+    @media (max-width: 565px) {
+        width: 70px;
+    }
 `;
 
 export default LogosCarousel;

@@ -91,7 +91,6 @@ const Container = styled.div`
             no-repeat bottom left,
         url(${DesignPatterns.skillsDesign1}) no-repeat -28rem 5rem / contain;
 
-    /* top-to-transparent overlay */
     &::before {
         content: "";
         ${tw`absolute inset-x-0 top-12 h-[60%] pointer-events-none`}
@@ -106,6 +105,9 @@ const Container = styled.div`
         box-shadow: none;
         linear-grandient: none;
         opacity: 100;
+    }
+    @media (max-width: 760px) {
+        padding-top: 0;
     }
 `;
 
@@ -173,7 +175,6 @@ const Title = styled.span<{ headerAnimation: boolean }>`
     transition: opacity 0.8s ease-in-out, color 0.8s ease-in-out,
         text-shadow 0.8s ease-in-out;
 
-    /* off‐state: nice muted teal */
     color: ${({ headerAnimation }) =>
         headerAnimation ? "rgba(0,255,255,1)" : "rgba(16, 125, 152, 0.8)"};
 `;

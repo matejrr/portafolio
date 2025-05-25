@@ -116,7 +116,12 @@ const SideSecDesign = styled.div`
     height: 10%;
     overflow: hidden;
     z-index: 30;
-    background: url(${DesignPatterns.skillsDesign2}) -12.5rem 0rem / contain no-repeat;
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1),
+            rgba(0, 0, 0, 0) 25%
+        ),
+        url(${DesignPatterns.skillsDesign2}) -12.5rem 0rem / contain no-repeat;
     background-size: auto 67vh;
     opacity: 0.8;
 
@@ -210,8 +215,8 @@ const DeliveryAppWrapper = styled.div`
     @media (max-width: 421px) {
         height: 245vh;
     }
-    @media (max-width: 385px) {
-        height: 320vh;
+    @media (max-width: 390px) {
+        height: 290vh;
     }
 `;
 

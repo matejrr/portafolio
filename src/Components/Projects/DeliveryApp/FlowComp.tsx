@@ -18,6 +18,7 @@ interface VideoRef {
 }
 
 const position = {
+    xxxxs: { x: 70, y: 40 },
     xxxs: { x: 75, y: 40 },
     xxs: { x: 81, y: 40 },
     xs: { x: 85, y: 40 },
@@ -42,6 +43,7 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
     const xsSmallScreen = useMediaQuery("(max-width: 805px)");
     const xxsSmallScreen = useMediaQuery("(max-width: 456px)");
     const xxxsSmallScreen = useMediaQuery("(max-width: 420px)");
+    const xxxxsSmallScreen = useMediaQuery("(max-width: 390px)");
 
     const nodeTypes = useMemo(() => {
         return {
@@ -60,7 +62,9 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
 
     useEffect(() => {
         let newPosition = position.md;
-        if (xxxsSmallScreen) {
+        if (xxxxsSmallScreen) {
+            newPosition = position.xxxxs;
+        } else if (xxxsSmallScreen) {
             newPosition = position.xxxs;
         } else if (xxsSmallScreen) {
             newPosition = position.xxs;
@@ -76,7 +80,14 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
                 node.id === "1" ? { ...node, position: newPosition } : node
             )
         );
-    }, [smallScreen, xsSmallScreen, xxsSmallScreen, xxxsSmallScreen, setNodes]);
+    }, [
+        smallScreen,
+        xsSmallScreen,
+        xxsSmallScreen,
+        xxxsSmallScreen,
+        xxxxsSmallScreen,
+        setNodes,
+    ]);
 
     const onConnect = React.useCallback(
         (params: Connection) => setEdges((es) => addEdge(params, es)),

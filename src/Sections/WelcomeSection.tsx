@@ -48,7 +48,12 @@ const SectionContainer = styled.div`
     overflow-x: visible;
     gap: 3.5rem;
 
-    @media (max-width: 865px) {
+    @media (max-width: 1472px) {
+        min-height: 75vh;
+        gap: 4.5rem;
+    }
+    @media (max-width: 483px) {
+        min-height: 42vh;
         gap: 4.5rem;
     }
 `;
@@ -195,8 +200,23 @@ const BottomSection = styled.div`
     @media (max-width: 483px) {
         margin-top: 20rem;
     }
-    @media (max-width: 415px) {
-        margin-top: 28rem;
+    @media (max-width: 470px) {
+        margin-top: 16.5rem;
+    }
+    @media (max-width: 462px) {
+        margin-top: 20rem;
+    }
+    @media (max-width: 412px) {
+        margin-top: 21.5rem;
+    }
+    @media (max-width: 387px) {
+        margin-top: 23.5rem;
+    }
+    @media (max-width: 363.5px) {
+        margin-top: 24rem;
+    }
+    @media (max-width: 347px) {
+        margin-top: 26.3rem;
     }
 `;
 

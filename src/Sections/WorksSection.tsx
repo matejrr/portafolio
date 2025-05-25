@@ -171,10 +171,6 @@ const Header = styled.div<{ headerAnimation: boolean }>`
     @media (max-width: 400px) {
         font-size: 1.3rem;
         line-height: 1.6rem;
-        gap: 1rem;
-        padding-top: 0rem;
-        margin-top: 0rem;
-        left: 0;
 `;
 
 const SubHeader = tw.span`

@@ -8,32 +8,10 @@ import ProjectsSection from "./Sections/ProjectsSection";
 import { Header } from "./Components/layout/header/Header";
 
 const HomePage2: React.FC = () => {
-    // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    // const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
-
-    // const requestRef = useRef<number | undefined>(undefined);
-    // const smoothing = 0.04;
-
-    // const animate = useCallback(() => {
-    //     setSmoothPosition((prev) => ({
-    //         x: prev.x + (mousePosition.x - prev.x) * smoothing,
-    //         y: prev.y + (mousePosition.y - prev.y) * smoothing,
-    //     }));
-    //     requestRef.current = requestAnimationFrame(animate);
-    // }, [mousePosition, smoothing]);
-
     const backgroundCells = Array.from({ length: 4000 });
 
     return (
         <div className="box-border overflow-x-visible">
-            {/* Light follows smooth cursor position */}
-            {/* <div
-                className="pointer-events-none fixed inset-0 z-10"
-                style={{
-                    background: `radial-gradient(circle at ${smoothPosition.x}px ${smoothPosition.y}px, rgba(0,255,0,0.2), 20px, transparent 150px)`,
-                    mixBlendMode: "screen",
-                }}
-            /> */}
             <PageContainer>
                 <GridLayout>
                     {backgroundCells.map((_, i) => (
