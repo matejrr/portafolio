@@ -1,3 +1,8 @@
+import checkAnimation from "./Animation-Check.json";
+import androidAnimation from "./Animation-Android.json";
+import webAnimation from "./Animation-Web.json";
+import fingerPrintAnimation from "./Animation-FingerPrint.json";
+
 export const images = {
     react: new URL("./react.svg", import.meta.url).href,
     nodejs: new URL("./nodejs.svg", import.meta.url).href,
@@ -27,9 +32,44 @@ export const images = {
     php: new URL("./php.svg", import.meta.url).href,
     javascript: new URL("./javascript.svg", import.meta.url).href,
     mariadb: new URL("./mariadb.svg", import.meta.url).href,
-    personalPhoto: new URL("./personalPhoto", import.meta.url).href,
+    personalPhoto: new URL("./personalPhoto.jpg", import.meta.url).href,
+    guitar: new URL("./guitar.svg", import.meta.url).href,
+    gym: new URL("./gym.svg", import.meta.url).href,
+    writing: new URL("./writing.svg", import.meta.url).href,
+    programming: new URL("./programming.svg", import.meta.url).href,
+    videoGames: new URL("./videogames.svg", import.meta.url).href,
+    linkedin: new URL("./linkedin.svg", import.meta.url).href,
+    facebook: new URL("./facebook.svg", import.meta.url).href,
+    instagram: new URL("./instagram.svg", import.meta.url).href,
 };
 
 export const demos = {
     deliveryApp: new URL("./HOT2EAT.mp4", import.meta.url).href,
+    portfolio: new URL("./HOT2EAT.mp4", import.meta.url).href,
+    artPlatform: new URL("./HOT2EAT.mp4", import.meta.url).href,
+    biomRegistration: new URL("./HOT2EAT.mp4", import.meta.url).href,
 };
+
+interface AnimationsProps {
+    name: string;
+    animation: unknown;
+}
+
+export const animations: AnimationsProps[] = [
+    {
+        name: "check",
+        animation: checkAnimation,
+    },
+    {
+        name: "android",
+        animation: androidAnimation,
+    },
+    {
+        name: "web",
+        animation: webAnimation,
+    },
+    {
+        name: "fingerprint",
+        animation: fingerPrintAnimation,
+    },
+];

@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { ProjectProps, projectsData, projectSections } from "@/data";
+import { ProjectProps } from "@/data";
 import { ProgressHeader } from "./ProgressHeader";
-import DetailedCard from "@/Components/specific/ProjectsSection/DetailedCard";
-import FlowComp from "./FlowComp";
+import { FlowComp } from "./FlowComp";
+import DetailedInfo from "@/Components/Projects/DetailedInfo";
 
 interface ProjectSectionProps extends ProjectProps {
     children?: React.ReactNode;
+    data: ProjectProps;
+    index: number;
 }
 
 export interface Chapter {
@@ -16,7 +18,7 @@ export interface Chapter {
     end: number;
 }
 
-const DeliveryApp: React.FC<ProjectSectionProps> = () => {
+export const Project: React.FC<ProjectSectionProps> = ({ data, index }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,68 +31,67 @@ const DeliveryApp: React.FC<ProjectSectionProps> = () => {
         return () => video.removeEventListener("timeupdate", handler);
     }, []);
 
-    const deliveryAppData = projectsData.find(
-        (project) => project.projectName === "Delivery App"
-    );
-
-    if (!deliveryAppData) return null;
-
     return (
         <SectionContainer>
-            <ProgressHeader
-                currentTime={currentTime}
-                sections={projectSections.deliveryApp}
-            />
+            {data.sections && (
+                <ProgressHeader
+                    index={index}
+                    currentTime={currentTime}
+                    sections={data.sections.sections}
+                />
+            )}
+
             <>
                 <GridLayout>
-                    <TextBlock>
-                        <HeaderRow>
-                            <Title>{deliveryAppData.projectName}</Title>
-                        </HeaderRow>
-                        <Description>{deliveryAppData.description}</Description>
-                        <Explanation>{deliveryAppData.explanation}</Explanation>
+                    {data && (
+                        <TextBlock>
+                            <HeaderRow>
+                                <Title>{data.projectName}</Title>
+                            </HeaderRow>
+                            <Description>{data.description}</Description>
+                            <Explanation>{data.explanation}</Explanation>
 
-                        <StackRow>
-                            {deliveryAppData.images?.techStack.map(
-                                (image, i) => (
+                            <StackRow>
+                                {data.images?.techStack.map((image, i) => (
                                     <TechLogo key={i}>{image}</TechLogo>
-                                )
-                            )}
-                        </StackRow>
-                        <ExtraInfo>
-                            <div className="flex flex-col gap-1">
-                                <div className="flex flex-row gap-3">
-                                    {deliveryAppData.roles.map(
-                                        (role, index) => (
+                                ))}
+                            </StackRow>
+                            <ExtraInfo>
+                                <div className="flex flex-col gap-1">
+                                    <div className="flex flex-row gap-3">
+                                        {data?.roles?.map((role, index) => (
                                             <Position key={index}>
                                                 {role}
                                             </Position>
-                                        )
-                                    )}
+                                        ))}
+                                    </div>
+                                    <Time>{data.date}</Time>
                                 </div>
-                                <Time>{deliveryAppData.date}</Time>
-                            </div>
 
-                            <h2 className="tracking-widest text-cyan-400">
-                                {deliveryAppData.finished}
-                            </h2>
-                            <DetailedCard
-                                detailedInfo={
-                                    deliveryAppData.detailedExplanation
-                                }
-                            />
-                        </ExtraInfo>
-                    </TextBlock>
+                                <h2 className="tracking-widest text-cyan-400">
+                                    {data.finished}
+                                </h2>
+                                <DetailedInfo
+                                    detailedInfo={
+                                        data.detailedExplanation ?? []
+                                    }
+                                />
+                            </ExtraInfo>
+                        </TextBlock>
+                    )}
                     <FlowWrapper>
-                        <FlowComp videoRef={videoRef} />
+                        {data.video && (
+                            <FlowComp
+                                VideoComponent={data.video}
+                                videoRef={videoRef}
+                            />
+                        )}
                     </FlowWrapper>{" "}
                 </GridLayout>
             </>
         </SectionContainer>
     );
 };
-
-export default DeliveryApp;
 
 const SectionContainer = styled.div`
     ${tw`relative w-full px-4 md:px-12 flex flex-col gap-24`}
@@ -248,7 +249,7 @@ const Description = tw.p`text-gray-400 text-base leading-relaxed`;
 const Explanation = tw.p`text-gray-300 text-sm leading-snug`;
 
 const FlowWrapper = styled.div`
-    ${tw`w-[100%] max-w-[400px] min-w-[400px] h-[87%] aspect-video rounded-xl absolute z-50 ml-16 hover:[box-shadow: 0 0 45px 1px rgba(0, 255, 255, 0.05)]`}
+    ${tw`w-[100%] max-w-[400px] min-w-[400px] min-h-[700px] h-[87%] aspect-video rounded-xl z-50 ml-16 hover:[box-shadow: 0 0 45px 1px rgba(0, 255, 255, 0.05)]`}
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
     background: #111827;
@@ -384,7 +385,7 @@ const TechLogo = styled.div`
   transition: all 0.3s;
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10
+
 `;
 
 const ExtraInfo = styled.div`
@@ -392,6 +393,10 @@ const ExtraInfo = styled.div`
 
     @media (max-width: 805px) {
         margin-top: 15px;
+    }
+    @media (max-width: 445px) {
+        margin-top: 15px;
+        padding-right: 10px;
     }
 `;
 

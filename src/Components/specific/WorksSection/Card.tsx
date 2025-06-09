@@ -27,9 +27,9 @@ const Card: React.FC<WorkProps> = ({
                     <Header>
                         <FirmName>{firmName}</FirmName>
                         <VerticalLine>|</VerticalLine>
-                        <TimeSpan index={index}>{timeSpan}</TimeSpan>
+                        <TimeSpan $index={index}>{timeSpan}</TimeSpan>
                     </Header>
-                    <Position index={index}>{position}</Position>
+                    <Position $index={index}>{position}</Position>
                 </div>
                 <Content>
                     <Section>
@@ -91,13 +91,13 @@ const FirmName = styled.h2`
 
 const TimeSpan = styled.h2.withConfig({
     shouldForwardProp: (prop) => prop !== "index",
-})<{ index: number }>(({ index }) => ({
+})<{ $index: number }>(({ $index }) => ({
     fontSize: "20px",
     fontWeight: "bold",
     textAlign: "right",
     display: "inline-block",
 
-    ...(index === 0
+    ...($index === 0
         ? {
               background: "linear-gradient(90deg, #00ffab, #00c18c, #00ffab)",
               backgroundSize: "200% auto",
@@ -132,9 +132,9 @@ const TextGradients = [
     },
 ];
 
-const Position = styled.p<{ index: number }>`
+const Position = styled.p<{ $index: number }>`
     ${tw`text-base font-medium`}
-    color: ${({ index }) => TextGradients[index].color}
+    color: ${({ $index }) => TextGradients[$index].color}
 
     @media (max-width: 460px) {
         text-align: left;

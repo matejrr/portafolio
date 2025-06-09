@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { InView } from "react-intersection-observer";
-import SectionProgress from "./SectionProgress";
 import tw, { styled } from "twin.macro";
+import { SectionProgress } from "./SectionProgress";
 
 export interface Chapter {
     start: number;
@@ -18,16 +18,18 @@ export const intervals: Chapter[] = [
 ];
 
 interface ProgressHeaderProps {
-    sections: { name: string; sections: string[] };
+    sections: string[];
     currentTime: number;
+    index: number;
 }
 
 export const ProgressHeader: React.FC<ProgressHeaderProps> = ({
     sections,
     currentTime,
+    index,
 }) => {
     const data = useMemo(() => {
-        return sections.sections.map((label, idx) => {
+        return sections.map((label, idx) => {
             const interval = intervals[idx] || { start: 0, end: 1 };
             const duration = interval.end - interval.start;
             let progress = 0;
@@ -47,7 +49,7 @@ export const ProgressHeader: React.FC<ProgressHeaderProps> = ({
                 active,
             };
         });
-    }, [sections.sections, currentTime]);
+    }, [sections, currentTime]);
 
     return (
         <Container>
@@ -58,7 +60,7 @@ export const ProgressHeader: React.FC<ProgressHeaderProps> = ({
             >
                 {({ ref, inView }) => (
                     <div className="w-full h-full">
-                        <Wrapper ref={ref}>
+                        <Wrapper $sections={sections} $index={index} ref={ref}>
                             {data.map(({ label, idx, progress, active }) => (
                                 <SectionProgress
                                     key={idx}
@@ -84,7 +86,7 @@ const Container = styled.div`
     }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $index: number; $sections: string[] }>`
     ${tw`flex gap-1 overflow-hidden`}
 
     @media (max-width: 940px) {

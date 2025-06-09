@@ -9,7 +9,6 @@ export const Avatar = React.forwardRef<
     <AvatarPrimitive.Root
         ref={ref}
         className={cn(
-            // 👇 drop all pointer events here
             "relative flex h-full w-full shrink-0 overflow-hidden rounded-full pointer-events-none",
             className
         )}

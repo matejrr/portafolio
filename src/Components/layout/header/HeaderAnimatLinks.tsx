@@ -7,10 +7,7 @@ type AnimatedTextProps = {
     onClick?: React.MouseEventHandler<HTMLSpanElement>;
 };
 
-const WhiteHeaderAnimatLinks: React.FC<AnimatedTextProps> = ({
-    text,
-    onClick,
-}) => {
+const HeaderAnimatLinks: React.FC<AnimatedTextProps> = ({ text, onClick }) => {
     return (
         <Link className="text-white">
             {text.split("").map((char, index) => (
@@ -22,7 +19,7 @@ const WhiteHeaderAnimatLinks: React.FC<AnimatedTextProps> = ({
     );
 };
 
-export default WhiteHeaderAnimatLinks;
+export default HeaderAnimatLinks;
 
 const Link = styled.a`
     ${tw`inline-block text-white font-normal [font-style: normal] cursor-pointer relative overflow-hidden tracking-[2.5px] text-[0.6rem]`}
@@ -37,19 +34,3 @@ const Link = styled.a`
         ${tw`tracking-[2.5px] text-[0.5rem] font-normal`}
     }
 `;
-
-// const Link = styled.a`
-//     display: inline-block;
-//     font-size: 0.6rem;
-//     font-style: normal;
-//     font-weight: 400;
-//     text-decoration: none;
-//     color: white;
-//     position: relative;
-//     overflow: hidden;
-//     cursor: pointer;
-//     letter-spacing: 2.5px;
-
-//     &:hover::after {
-//         width: 100%; /* Ensure the line stays at full width when hovering */
-//     }

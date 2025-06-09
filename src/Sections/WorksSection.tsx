@@ -4,7 +4,7 @@ import { WorksInfo } from "@/data";
 import { useEffect, useRef, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
-const WorkSection: React.FC = () => {
+export const WorkSection: React.FC = () => {
     const [headerAnimation, setHeaderAnimation] = useState(false);
     const [onView, setOnView] = useState<boolean[]>([false, false, false]);
     const cardRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -61,15 +61,17 @@ const WorkSection: React.FC = () => {
     }, []);
 
     return (
-        <Container>
+        <Container id="works-section">
             <TopTextContainer>
-                <WorkType>FRONTEND - 60% / FULLSTACK - 40%</WorkType>
-                <Header headerAnimation={headerAnimation}>
-                    It's been a little over 2 years since I started programming
-                    consistently...
+                <WorkType>
+                    Specializing in Frontend, with strong Fullstack experience.
+                </WorkType>
+                <Header $headerAnimation={headerAnimation}>
+                    From my first lines of code to professional experience —
+                    this is the journey so far
                     <SubHeader>
-                        Below are the internships and work experiences I've
-                        gained during this time
+                        Each role has helped sharpen both my frontend focus and
+                        backend understanding.
                     </SubHeader>
                 </Header>
             </TopTextContainer>
@@ -89,7 +91,7 @@ const WorkSection: React.FC = () => {
                         data-index={index}
                         key={index}
                     >
-                        <BulletPoint index={index} onView={onView[index]} />
+                        <BulletPoint $index={index} $onView={onView[index]} />
                         <Card
                             index={index}
                             firmName={work.firmName}
@@ -106,10 +108,8 @@ const WorkSection: React.FC = () => {
     );
 };
 
-export default WorkSection;
-
 const Container = styled.div`
-    ${tw`flex flex-col items-center gap-14 pt-6 justify-end pb-36 self-center w-[93%] h-[100%] bg-section-works-tericary opacity-100 rounded-[10px] z-10 [box-shadow: -100px 100px 50px black, 100px 100px 50px black]`}
+    ${tw`flex flex-col items-center gap-14 pt-6 justify-end pb-36 self-center w-[93%] h-[100%] bg-section-works-tericary opacity-100 rounded-[10px] z-10`}
     border: 0.2px solid transparent;
     border-image-source: linear-gradient(
         to bottom,
@@ -140,20 +140,20 @@ const WorkType = tw.span`
     text-sm text-section-works-highlight tracking-[2.3px] leading-[1.7rem] w-[80%]
 `;
 
-const Header = styled.div<{ headerAnimation: boolean }>`
+const Header = styled.div<{ $headerAnimation: boolean }>`
     ${tw`flex flex-col gap-5 text-4xl text-white text-start w-[50%] h-[17%] tracking-[2px] leading-[3rem] z-10`}
 
-    opacity: ${({ headerAnimation: animate }) => (animate ? 1 : 0)};
-    transform: ${({ headerAnimation: animate }) =>
-        animate ? "translateX(0.2rem)" : "translateX(-1rem)"};
+    opacity: ${({ $headerAnimation }) => ($headerAnimation ? 1 : 0)};
+    transform: ${({ $headerAnimation }) =>
+        $headerAnimation ? "translateX(0.2rem)" : "translateX(-1rem)"};
     transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
 
     @media (max-width: 950px) {
         width: 90%;
     }
     @media (max-width: 758px) {
-        transform: ${({ headerAnimation: animate }) =>
-            animate ? "translateX(1rem)" : "translateX(-1rem)"};
+        transform: ${({ $headerAnimation }) =>
+            $headerAnimation ? "translateX(1rem)" : "translateX(-1rem)"};
         transition: opacity 1.3s ease-in-out, transform 1.6s ease-in-out;
     }
     @media (max-width: 600px) {
@@ -211,21 +211,21 @@ const bulletGradients = [
         highlight: "linear-gradient(135deg, #9ffcd0, #33c2b7)",
     },
 ];
-const BulletPoint = styled.div<{ onView: boolean; index: number }>`
+const BulletPoint = styled.div<{ $onView: boolean; $index: number }>`
     position: relative;
     width: 16px;
     height: 16px;
     margin-left: -8px;
     border-radius: 50%;
-    background: ${({ index }) => bulletGradients[index].base};
+    background: ${({ $index }) => bulletGradients[$index].base};
     transition: background 0.3s ease, box-shadow 0.25s ease;
 
-    ${({ onView, index }) =>
-        onView &&
+    ${({ $onView, $index }) =>
+        $onView &&
         css`
-            background: ${bulletGradients[index].highlight};
-            box-shadow: 0 0 10px ${bulletGradients[index].highlight},
-                0 0 20px ${bulletGradients[index].highlight};
+            background: ${bulletGradients[$index].highlight};
+            box-shadow: 0 0 10px ${bulletGradients[$index].highlight},
+                0 0 20px ${bulletGradients[$index].highlight};
         `}
 
     &::after {
@@ -234,12 +234,12 @@ const BulletPoint = styled.div<{ onView: boolean; index: number }>`
         inset: 0;
         border-radius: 50%;
         pointer-events: none;
-        background: ${({ index }) => bulletGradients[index].highlight};
+        background: ${({ $index }) => bulletGradients[$index].highlight};
         transform: scale(1);
         transform-origin: center center;
         opacity: 0;
-        ${({ onView }) =>
-            onView &&
+        ${({ $onView }) =>
+            $onView &&
             css`
                 animation: ${pulse} 1.4s ease-out forwards;
             `}

@@ -12,15 +12,19 @@ const buttonVariants = cva(
                 default:
                     "bg-primary text-primary-foreground shadow hover:bg-primary/90",
                 destructive:
-                    "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+                    "bg-transparent text-[#FF1F1F]  hover:bg-destructive/90",
+                proceed:
+                    "border border-[#00E5FF] bg-[#00E5FF] hover:backdrop-blur-md transition-all duration-100 hover:scale-102 ",
                 outline:
                     "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
                 secondary:
                     "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
                 welcome:
                     "border border-[#0e6251] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102",
-                projects:
-                    "border border-[#00E5FF] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102",
+                quickMessage:
+                    "border border-[#00E5FF] bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102 ",
+                contact:
+                    "w-[98.5%] self-center mt-4 border-[1px] border-[#662900] rounded-md bg-transparent hover:backdrop-blur-md transition-all duration-100 hover:scale-102 active:border-[2px] hover:border-[#cc5200]",
                 link: "text-primary underline-offset-4 hover:underline",
             },
             size: {

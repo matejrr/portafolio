@@ -1,11 +1,12 @@
 import tw from "twin.macro";
-// import { useCallback, useEffect, useRef, useState } from "react";
-import WelcomeSection from "./Sections/WelcomeSection";
-import WorkSection from "./Sections/WorksSection";
-import SkillsSection from "./Sections/SkillsSection";
-import QuickMessage from "./Sections/QuickMessage";
-import ProjectsSection from "./Sections/ProjectsSection";
 import { Header } from "./Components/layout/header/Header";
+import { AboutMe } from "./Sections/AboutMe";
+import { WelcomeSection } from "./Sections/WelcomeSection";
+import { WorkSection } from "./Sections/WorksSection";
+import { SkillsSection } from "./Sections/SkillsSection";
+import { QuickMessage } from "./Sections/QuickMessage";
+import { ProjectsSection } from "./Sections/ProjectsSection";
+import Contact from "./Sections/Contact";
 
 const HomePage2: React.FC = () => {
     const backgroundCells = Array.from({ length: 4000 });
@@ -31,6 +32,10 @@ const HomePage2: React.FC = () => {
                     <SkillsSection />
                     <QuickMessage />
                     <ProjectsSection />
+                    <div className=" relative h-full w-full mt-[40rem]">
+                        <AboutMe />
+                    </div>
+                    <Contact />
                 </div>
             </PageContainer>
         </div>

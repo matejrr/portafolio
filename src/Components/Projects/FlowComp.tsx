@@ -10,23 +10,27 @@ import {
 } from "@xyflow/react";
 import React, { useEffect, useMemo, useState } from "react";
 import "@xyflow/react/dist/style.css";
-import { Demos } from "@/Components/shared/Demos";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { VideoRef } from "@/data";
 
-interface VideoRef {
+interface FlowCompProps {
     videoRef: React.RefObject<HTMLVideoElement | null>;
+    VideoComponent: VideoRef;
 }
 
 const position = {
-    xxxxs: { x: 70, y: 40 },
-    xxxs: { x: 75, y: 40 },
+    xxxxs: { x: 68, y: 40 },
+    xxxs: { x: 73, y: 40 },
     xxs: { x: 81, y: 40 },
     xs: { x: 85, y: 40 },
     s: { x: 40, y: 50 },
     md: { x: 60, y: 55 },
 };
 
-const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
+export const FlowComp: React.FC<FlowCompProps> = ({
+    videoRef,
+    VideoComponent,
+}) => {
     const [colorMode] = useState<ColorMode>("dark");
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [nodes, setNodes, onNodesChange] = useNodesState([
@@ -52,13 +56,13 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
             }: {
                 data: { videoRef: React.RefObject<HTMLVideoElement> };
             }) => (
-                <Demos.deliveryApp
+                <VideoComponent
                     ref={data.videoRef}
                     width={xsSmallScreen ? "60%" : smallScreen ? "76%" : "76%"}
                 />
             ),
         };
-    }, [smallScreen, xsSmallScreen]);
+    }, [smallScreen, xsSmallScreen, VideoComponent]);
 
     useEffect(() => {
         let newPosition = position.md;
@@ -111,7 +115,7 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
             >
                 <Background
                     bgColor="black"
-                    color="#f0f0f0"
+                    color="white"
                     variant={BackgroundVariant.Cross}
                     gap={40}
                     size={0.5}
@@ -120,5 +124,3 @@ const FlowComp: React.FC<VideoRef> = ({ videoRef }) => {
         </div>
     );
 };
-
-export default FlowComp;

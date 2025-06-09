@@ -2,6 +2,8 @@ import { WorkProps } from "./Components/specific/WorksSection/Card";
 import React from "react";
 import { Logos } from "./Components/shared/Logos";
 import { images } from "./assets";
+import { Demos } from "./Components/shared/Demos";
+import { hobbies } from "./Components/shared/hobbies";
 
 // -----------------------------------------  WORKS  -----------------------------------------
 
@@ -79,17 +81,14 @@ export const ListOfSkills = [
         skillSet: [
             "React.js",
             "React Native(*)",
-            "Vue.js(**)",
-            "Axios",
-            "Fetch API",
             "TailwindCss",
             "Styled-Comp",
             "HTML5",
             "CSS",
             "Typescript",
             "Javascript",
-            "Apollo Client(*)",
             "Shadcn",
+            "React Paper",
             "Bootstrap",
             "Material UI",
             "Radix UI",
@@ -107,19 +106,19 @@ export const ListOfSkills = [
     },
     {
         section: "Design && Visualization Tools",
-        skillSet: ["Figma(*)", "Blender(**)", "Three.js(**)"],
+        skillSet: ["Figma(*)", "Blender(**)"],
     },
     {
         section: "Backend",
-        skillSet: ["Node.js", "Express", "Python(*)"],
+        skillSet: ["Node.js", "Express"],
     },
     {
         section: "Databases",
-        skillSet: ["SQL Server", "PostgreSQL(*)", "MariaDB(*)", "MongoDB"],
+        skillSet: ["MongoDB", "SQL Server", "PostgreSQL(*)", "MariaDB(*)"],
     },
     {
         section: "DevOps",
-        skillSet: ["AWS", "Docker(**)", "Kubernetes(**)"],
+        skillSet: ["AWS"],
     },
     {
         section: "Dev Tools",
@@ -129,7 +128,7 @@ export const ListOfSkills = [
 
 // -----------------------------------------  PROJECTS  -----------------------------------------
 
-// -----------------------------------------  PROJECTS => INTERFACES ENUMS SCHEMAS  -----------------------------------------
+// -----------------------------------------  PROJECTS => INTERFACES, TYPES, ENUMS  -----------------------------------------
 
 enum FieldsOfWork {
     uiDesign = "UI Design",
@@ -139,9 +138,10 @@ enum FieldsOfWork {
     dataBase = "Creation & Administration of DataBase",
 }
 
-export interface Achievements {
-    heading: string;
-    content: string;
+enum LayOut {
+    left = "left",
+    center = "center",
+    right = "right",
 }
 
 interface ProjectImagesProps {
@@ -154,15 +154,28 @@ interface SectionNode {
     sections: string[] | Record<string, string[]>;
 }
 
+export interface DemoVideoProps {
+    width?: string;
+}
+
 export type Heading = string[] | Record<string, SectionNode>;
 
-export interface BaseProps {
+export type VideoRef = React.ForwardRefExoticComponent<
+    DemoVideoProps & React.RefAttributes<HTMLVideoElement>
+>;
+
+export interface Sections {
+    name: string;
+    sections: string[];
+}
+
+export interface ProjectProps {
     projectName?: string;
     date?: string;
-    finished?: boolean;
+    finished?: string;
     description?: string;
     explanation?: string;
-    detailExplanation?: Achievements[];
+    detailedExplanation?: string[];
     roles?: string[];
     fieldsOfWork?: FieldsOfWork | FieldsOfWork[];
     GitHubSrc?: string | null;
@@ -170,13 +183,15 @@ export interface BaseProps {
     images?: ProjectImagesProps;
     cardIndex?: number;
     extraInfo?: string;
+    layOut?: string;
+    video?: VideoRef;
+    sections?: Sections;
+    animationName: string;
 }
-
-export type ProjectProps = BaseProps;
 
 // -----------------------------------------  PROJECTS => SECTIONS  -----------------------------------------
 
-export const projectSections = {
+export const projectSections: { [key: string]: Sections } = {
     deliveryApp: {
         name: "Delivery App",
         sections: [
@@ -200,59 +215,26 @@ export const projectSections = {
         ],
     },
     artPlatform: {
-        webPage: {
-            name: "Web Page",
-            sections: [
-                "Landing Page",
-                "Why Elite?",
-                "First Artist Contact",
-                "...",
-            ],
-        },
-        adminPage: {
-            name: "Artist Admin Page",
-            sections: {
-                myContent: [
-                    "Paintings",
-                    "Uploading",
-                    "Editing",
-                    "Deleting",
-                    "...",
-                ],
-            },
-        },
-        designPage: {
-            name: "Design Page 1",
-            sections: [
-                "HomePage",
-                "Exhibitions",
-                "Shop",
-                "Paintings",
-                "Prints",
-                "Artwork Details",
-                "Dark Mode",
-                "...",
-            ],
-        },
+        name: "Web Page",
+        sections: [
+            "Landing",
+            "Artist Admin",
+            "Artist Page",
+            "Shop",
+            "Artwork Details",
+            "...",
+        ],
     },
     biometricReg: {
-        biometricReg: {
-            name: "Biometric Registration",
-            sections: ["Fingerprint Registration", "Saving Data", "..."],
-        },
-        PushNotifications: {
-            name: "Push Notification",
-            sections: [
-                "Pop Up Notification",
-                "Creating User's Info..",
-                "Saving Data",
-                "...",
-            ],
-        },
-        AdminPage: {
-            name: "Admin Page",
-            sections: ["filter", "update", "delete", "..."],
-        },
+        name: "Biometric Registration",
+        sections: [
+            "Registration",
+            "Pop Up Notification",
+            "filter",
+            "update",
+            "delete",
+            "...",
+        ],
     },
 };
 const detailedExplanation = {
@@ -335,12 +317,12 @@ const ProjectImages: ProjectImages = {
 
 // -----------------------------------------  PROJECTS => PROJECTS  -----------------------------------------
 
-export const projectsData = [
+export const projectsData: ProjectProps[] = [
     {
         projectName: "Delivery App",
         date: "Sept 2024 - March 2025",
         finished: "Finished",
-        description: "Development of a mobile application",
+        description: "Mobile application",
         explanation:
             "Creation of a mobile application for Android devices with a user-friendly interface and a modern design, used by delivery drivers to track orders from production at each restaurant to the final customer destination",
         GitHubSrc: null,
@@ -348,12 +330,16 @@ export const projectsData = [
         images: ProjectImages.deliveryApp,
         cardIndex: 1,
         detailedExplanation: detailedExplanation.deliveryApp,
+        layOut: LayOut.left,
+        video: Demos.deliveryApp,
+        sections: projectSections.deliveryApp,
+        animationName: "android",
     },
     {
         projectName: "Portfolio",
         date: "April 2025 - May 2025",
         finished: "Finished",
-        description: "Development of a modern portafolio",
+        description: "Modern portafolio",
         explanation:
             "A single page modern portafolio with a personal design that reflects my works, achievements and goals as a programmer",
         GitHubSrc: "https://github.com/matejrr/portafolio.git",
@@ -361,12 +347,16 @@ export const projectsData = [
         images: ProjectImages.portafolio,
         cardIndex: 2,
         detailedExplanation: detailedExplanation.portfolio,
+        layOut: LayOut.center,
+        video: Demos.portfolio,
+        sections: projectSections.portafolio,
+        animationName: "web",
     },
     {
         projectName: "Art Platform",
         date: "Jan 2025 - Present",
         finished: "In Progress",
-        description: "Online Gallery to sell Artworks",
+        description: "Transportation and Art Selling Platform",
         explanation:
             "Development of an Online Gallery that will manage all transportation, selling, printing and framing of artworks in the Canary Islands",
         GitHubSrc: null,
@@ -374,6 +364,10 @@ export const projectsData = [
         images: ProjectImages.artPlatform,
         cardIndex: 3,
         detailedExplanation: detailedExplanation.ArtPlatform,
+        layOut: LayOut.right,
+        video: Demos.artPlatform,
+        sections: projectSections.artPlatform,
+        animationName: "web",
     },
     {
         projectName: "Biometric Registration",
@@ -387,5 +381,113 @@ export const projectsData = [
         images: ProjectImages.biometricReg,
         cardIndex: 4,
         detailedExplanation: detailedExplanation.biometricReg,
+        layOut: LayOut.left,
+        video: Demos.biomRegistration,
+        sections: projectSections.biometricReg,
+        animationName: "fingerprint",
+    },
+];
+
+// -----------------------------------------  ABOUT ME => INTERFACES, ENUMS  -----------------------------------------
+
+export interface TimeLine {
+    date: string;
+    institution: string;
+    course: string;
+}
+
+enum LanguageLevel {
+    basic = "basic",
+    intermediate = "interm",
+    advanced = "advanced",
+    native = "native",
+}
+export interface Languages {
+    language: string;
+    level: LanguageLevel;
+}
+
+export interface HobbiesProps {
+    name: string;
+    image: React.JSX.Element;
+}
+
+// -----------------------------------------  ABOUT ME  -----------------------------------------
+
+export const aboutMe = [
+    {
+        header: "About Me",
+        content:
+            "I started coding out of curiosity and quickly became obsessed with solving problems through programming. Over the years, I've worked on a wide range of projects — from small websites to a more complex backend systems — and gradually expanded into app development.",
+    },
+    {
+        header: "What I Do",
+        content:
+            "I specialize in modern web and mobile development using TypeScript. I enjoy creating clean, user-focused digital experiences and love building things from the ground up — especially when it means turning ideas into functional, engaging, and impactful products.",
+    },
+];
+
+export const TimeLine: TimeLine[] = [
+    {
+        date: "JUL 2024 - NOV 2024",
+        institution: "Formación Tenerife (AFS)",
+        course: "Web Development (560h)",
+    },
+    {
+        date: "MARCH 2024 - MAY 2024",
+        institution: "Servicio Público Empleo Estatal (SEPE)",
+        course: "SQL Server and Relational Databases Course (250h)",
+    },
+    {
+        date: "DEC 2024 - MARCH 2025",
+        institution: "Udemy",
+        course: "Advanced Course in React (250h)",
+    },
+    {
+        date: "SEP 2018 - MAY 2022",
+        institution: "Universidad de La Laguna (ULL)",
+        course: "Bachelors Degree in English Philology",
+    },
+];
+
+export const Languages: Languages[] = [
+    {
+        language: "Spanish",
+        level: LanguageLevel.native,
+    },
+    {
+        language: "English",
+        level: LanguageLevel.native,
+    },
+    {
+        language: "Slovak",
+        level: LanguageLevel.native,
+    },
+    {
+        language: "German",
+        level: LanguageLevel.basic,
+    },
+];
+
+export const Hobbies: HobbiesProps[] = [
+    {
+        name: "Programming",
+        image: hobbies.programming(),
+    },
+    {
+        name: "Music",
+        image: hobbies.guitar(),
+    },
+    {
+        name: "Training",
+        image: hobbies.gym(),
+    },
+    {
+        name: "Writing",
+        image: hobbies.writing(),
+    },
+    {
+        name: "VideoGames",
+        image: hobbies.videoGames(),
     },
 ];

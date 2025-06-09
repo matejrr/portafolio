@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 
-const SkillsSection: React.FC = () => {
+export const SkillsSection: React.FC = () => {
     const [headerAnimation, setHeaderAnimation] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const SkillsSection: React.FC = () => {
     }, [headerAnimation]);
 
     return (
-        <Container>
+        <Container id="skills-section">
             <div className="absolute top-20 left-1/2 inset-0 w-full h-full pointer-events-none z-0">
                 <div className="absolute w-[100%] h-12 bg-section-skills-secondary rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
@@ -29,7 +29,7 @@ const SkillsSection: React.FC = () => {
                     <HeaderContainer>
                         {headerAnimation === true ? (
                             <Header>
-                                <Title headerAnimation={headerAnimation}>
+                                <Title $headerAnimation={headerAnimation}>
                                     SKILL SET
                                 </Title>
 
@@ -39,7 +39,7 @@ const SkillsSection: React.FC = () => {
                             </Header>
                         ) : (
                             <Header>
-                                <Title headerAnimation={headerAnimation}>
+                                <Title $headerAnimation={headerAnimation}>
                                     SKILL SET
                                 </Title>
                             </Header>
@@ -70,11 +70,9 @@ const SkillsSection: React.FC = () => {
     );
 };
 
-export default SkillsSection;
-
 const Container = styled.div`
     ${tw`relative flex flex-col self-center pt-8  mb-10 z-[10] gap-16 w-[90%] h-[100%] backdrop-hue-rotate-90 hue-rotate-15 pointer-events-none
-    [box-shadow: inset -100px 100px 5px black, -100px 100px 50px black, 100px 100px 50px black]`}
+        [box-shadow: inset -100px 100px 5px black, -100px 100px 50px black, 100px 100px 50px black]`}
     background-repeat: no-repeat;
     opacity: 0.8;
     background: linear-gradient(
@@ -102,7 +100,6 @@ const Container = styled.div`
     }
     @media (max-width: 1472px) {
         background: none;
-        box-shadow: none;
         linear-grandient: none;
         opacity: 100;
     }
@@ -119,7 +116,7 @@ const HeaderContainer = styled.div`
     }
 `;
 export const ParalelLine = styled.hr`
-    ${tw` border-t border-[rgba(10, 90, 150, 1)] z-10 w-[3%] self-center border-[0.08rem]`};
+    ${tw` border-t border-[rgba(10, 90, 150, 1)] z-10 w-[3%] mt-6 self-center border-[0.08rem]`};
 
     @media (max-width: 1055px) {
         margin-top: 3%;
@@ -169,18 +166,18 @@ const Header = styled.span`
     }
 `;
 
-const Title = styled.span<{ headerAnimation: boolean }>`
+const Title = styled.span<{ $headerAnimation: boolean }>`
     ${tw`font-bold tracking-[8px]`}
-    opacity: ${({ headerAnimation }) => (headerAnimation ? 1 : 0)};
+    opacity: ${({ $headerAnimation }) => ($headerAnimation ? 1 : 0)};
     transition: opacity 0.8s ease-in-out, color 0.8s ease-in-out,
         text-shadow 0.8s ease-in-out;
 
-    color: ${({ headerAnimation }) =>
-        headerAnimation ? "rgba(0,255,255,1)" : "rgba(16, 125, 152, 0.8)"};
+    color: ${({ $headerAnimation }) =>
+        $headerAnimation ? "rgba(0,255,255,1)" : "rgba(16, 125, 152, 0.8)"};
 `;
 
 const Context = styled.span`
-    ${tw`flex flex-1 text-white text-sm w-[5%] tracking-[2px]`};
+    ${tw`flex flex-1 text-white text-sm w-[5%] mt-6 tracking-[2px]`};
 
     @media (max-width: 1195px) {
         font-size: 0.7rem;
@@ -222,7 +219,5 @@ const SkillList = tw.div`
 `;
 
 const Skill = tw.span`
-  px-2 py-1 rounded-sm text-sm text-white
-  transition-shadow duration-200
-  hover:shadow-[0_0_6px_rgba(0,255,255,0.7)] hover:cursor-pointer pointer-events-auto
+  px-2 py-1 rounded-sm text-sm text-white pointer-events-none
 `;

@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 
-const DetailedCard: React.FC<{ detailedInfo: string[] }> = ({
+const DetailedInfo: React.FC<{ detailedInfo: string[] }> = ({
     detailedInfo,
 }) => {
     const [textAnimation, setTextAnimation] = useState(false);
 
     useEffect(() => {
         function handleAnimation() {
-            if (window.scrollY > 3900 && !textAnimation) {
+            if (window.scrollY > 4250 && !textAnimation) {
                 setTextAnimation(true);
             }
         }
@@ -20,21 +20,21 @@ const DetailedCard: React.FC<{ detailedInfo: string[] }> = ({
     }, [textAnimation]);
 
     return (
-        <DetailedInfo>
+        <Container>
             {textAnimation && (
                 <>
                     {detailedInfo.map((section, index) => (
-                        <Text index={index} key={index}>
+                        <Text $index={index} key={index}>
                             {section}
                         </Text>
                     ))}
                 </>
             )}
-        </DetailedInfo>
+        </Container>
     );
 };
 
-export default DetailedCard;
+export default DetailedInfo;
 
 export interface Project {
     title: string;
@@ -43,7 +43,7 @@ export interface Project {
     link: string;
 }
 
-const DetailedInfo = styled.div`
+const Container = styled.div`
     ${tw` flex flex-col mt-8 gap-4`}
     border: none;
     width: full;
@@ -60,18 +60,18 @@ const slideUp = keyframes`
   }
 `;
 
-const Text = styled.h3<{ index: number }>`
+const Text = styled.h3<{ $index: number }>`
     ${tw`flex text-white tracking-wide relative`}
     opacity: 0;
-    width: ${({ index }) => (index > 2 ? "200%" : "102%")};
+    width: ${({ $index }) => ($index > 2 ? "200%" : "102%")};
     line-height: 1.6rem;
     font-size: 0.95rem;
     letter-spacing: 1px;
     animation: ${slideUp} 0.6s ease-out forwards;
-    animation-delay: ${({ index }) => `${index * 0.2}s`};
+    animation-delay: ${({ $index }) => `${$index * 0.2}s`};
 
     /* Stack them so each “underneath” slides up below the previous */
-    z-index: ${({ index }) => index};
+    z-index: ${({ $index }) => $index};
 
     &::before {
         content: "•";
@@ -87,13 +87,13 @@ const Text = styled.h3<{ index: number }>`
         width: 100%;
     }
     @media (max-width: 1345px) {
-        width: ${({ index }) => (index > 2 ? "160%" : "100%")};
+        width: ${({ $index }) => ($index > 2 ? "160%" : "100%")};
     }
     @media (max-width: 888px) {
-        width: ${({ index }) => (index > 0 ? "280%" : "200%")};
+        width: ${({ $index }) => ($index > 0 ? "280%" : "200%")};
     }
     @media (max-width: 860px) {
-        width: ${({ index }) => (index > 0 ? "260%" : "100%")};
+        width: ${({ $index }) => ($index > 0 ? "260%" : "100%")};
     }
     @media (max-width: 805px) {
         width: 100%;

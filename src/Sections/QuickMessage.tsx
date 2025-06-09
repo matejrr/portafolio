@@ -3,12 +3,14 @@ import styled, { keyframes, css } from "styled-components";
 import tw from "twin.macro";
 import personalPhoto from "../assets/personalPhoto.jpg";
 import { Input } from "@/Components/ui/Input";
-import { Button } from "@/Components/ui/Button";
 import { useState } from "react";
-import { Avatar } from "@/Components/shared/Avatar";
 
-const QuickMessage: React.FC = () => {
+import { Avatar } from "@/Components/specific/QuickMessage/Avatar";
+import { MessageDialog } from "@/Components/specific/QuickMessage/MessageDialog";
+
+export const QuickMessage: React.FC = () => {
     const [quickMessage, setQuickMessage] = useState("");
+    const [onSubmitMessage, setOnSubmitMessage] = useState<string>();
 
     return (
         <Container>
@@ -18,18 +20,18 @@ const QuickMessage: React.FC = () => {
                         <LeftSide>
                             <ObserverWrapper ref={ref}>
                                 <div className="flex flex-row gap-5">
-                                    <BulletPoint inView={inView} />
-                                    <AvatarWrapper inView={inView}>
+                                    <BulletPoint $inView={inView} />
+                                    <AvatarWrapper $inView={inView}>
                                         <Avatar>
                                             <img src={personalPhoto} />
                                         </Avatar>
                                     </AvatarWrapper>
                                 </div>
-                                <Text inView={inView}>
+                                <Text $inView={inView}>
                                     Want to know more about any specific
                                     section?
                                 </Text>
-                                <TextMobile inView={inView}>DM me</TextMobile>
+                                <TextMobile $inView={inView}>DM me</TextMobile>
                             </ObserverWrapper>
                         </LeftSide>
 
@@ -40,16 +42,7 @@ const QuickMessage: React.FC = () => {
                                     fontSize: "0.9rem",
                                     letterSpacing: "0.7px",
                                     padding: "1.5rem 1rem",
-                                    borderTop: quickMessage
-                                        ? "2px solid rgba(30,210,255, 0.6)"
-                                        : "1.5px solid rgba(30,190,255, 0.4)",
-                                    borderRight: quickMessage
-                                        ? "2px solid rgba(30,210,255, 0.6)"
-                                        : "1.5px solid rgba(30,190,255, 0.4)",
-                                    borderBottom: quickMessage
-                                        ? "2px solid rgba(30,210,255, 0.6)"
-                                        : "1.5px solid rgba(30,190,255, 0.4)",
-                                    borderLeft: quickMessage
+                                    border: quickMessage
                                         ? "2px solid rgba(30,210,255, 0.6)"
                                         : "1.5px solid rgba(30,190,255, 0.4)",
                                     transition: "border 1s ease-in-out",
@@ -66,25 +59,31 @@ const QuickMessage: React.FC = () => {
             </InView>
 
             <ButtonSection>
+                {onSubmitMessage && (
+                    <span className="text-white tracking-widest text-md mt-2">
+                        {onSubmitMessage}
+                    </span>
+                )}
+
                 {quickMessage && (
-                    <QuickEmailButton
-                        style={{ borderColor: "#00E5FF" }}
-                        variant="projects"
-                    >
-                        Send
-                    </QuickEmailButton>
+                    <MessageDialog
+                        quickMessage={quickMessage}
+                        setOnSubmitMessage={setOnSubmitMessage}
+                        setQuickMessage={setQuickMessage}
+                    />
                 )}
             </ButtonSection>
         </Container>
     );
 };
 
-export default QuickMessage;
-
 const Container = styled.div`
-    ${tw`flex flex-col gap-3 self-center w-[100%] min-h-[14rem] pt-14 justify-center  rounded-[10px] pl-[2.4rem] pr-14 z-20
-    [box-shadow: inset -800px 50px 100px black, inset 800px 50px 100px black, -50px 50px 100px black]`}
+    ${tw`flex flex-col gap-3 self-center w-[100%] min-h-[14rem] pt-14 justify-center  rounded-[10px] pl-[2.4rem] pr-14 z-20 [box-shadow: inset -800px 50px 100px black, inset 800px 50px 100px black, -50px 50px 100px black]`}
 
+    @media (max-width: 1472px) {
+        min-height: 0px;
+        padding-top: 0px;
+    }
     @media (max-width: 1355px) {
         width: 95%;
     }
@@ -105,8 +104,12 @@ const LeftSide = styled.div`
         justify-content: left;
     }
 `;
-const ObserverWrapper = styled.div`
-    ${tw`flex items-center gap-5`}
+export const ObserverWrapper = styled.div`
+    ${tw`relative flex items-center gap-5`}
+
+    @media (max-width: 1472px) {
+        gap: 5px;
+    }
 `;
 
 const RightSide = styled.div`
@@ -118,22 +121,7 @@ const RightSide = styled.div`
 `;
 
 const ButtonSection = styled.div`
-    ${tw`relative flex self-center w-full text-white`}
-`;
-
-const QuickEmailButton = tw(Button)`
-    w-[clamp(7rem, 10vw, 8rem)]
-    h-[clamp(2rem, 2.5vw, 2.3rem)]
-    tracking-widest
-    hover:cursor-pointer
-    hover:border-[0.1rem]
-    animate-fade-in
-    motion-reduce:opacity-100
-    absolute
-    right-0
-    mt-3
-    py-[1.2rem]
-
+    ${tw`relative flex self-center justify-end gap-4 w-full text-white`}
 `;
 
 const popAvatar = keyframes`
@@ -145,37 +133,35 @@ const popAvatar = keyframes`
   90%  { opacity: 1; width: 6.5rem; height: 6.5rem; }
  100%  { opacity: 0; width: 0; height: 0; }
 `;
-const AvatarWrapper = styled.div<{ inView: boolean }>`
+const AvatarWrapper = styled.div<{ $inView: boolean }>`
     ${tw`rounded-full z-10`}
     width: 0;
     height: 0;
     opacity: 0;
 
-    ${({ inView }) =>
-        inView &&
+    ${({ $inView }) =>
+        $inView &&
         css`
             animation: ${popAvatar} 4.5s ease-out forwards;
-            /* you can delay the **start** of the pop if you like: */
         `}
     @media (max-width: 490px) {
         display: none;
     }
 `;
 
-/* your text slides in/out exactly as before */
 const slideText = keyframes`
   0%, 25%   { opacity: 0; transform: translateX(-3rem); }
   30%, 85%  { opacity: 1; transform: translateX(1rem);  }
   90%,100%  { opacity: 0; transform: translateX(-3rem)}
 `;
 
-const Text = styled.span<{ inView: boolean }>`
+const Text = styled.span<{ $inView: boolean }>`
     ${tw`text-[1rem] tracking-[1.5px] leading-[1rem] text-gray-200 text-right`}
     opacity: 0;
     transform: translateX(-5rem);
 
-    ${({ inView }) =>
-        inView &&
+    ${({ $inView }) =>
+        $inView &&
         css`
             animation: ${slideText} 4s ease-in-out forwards;
             animation-delay: 0.5s;
@@ -192,14 +178,14 @@ const Text = styled.span<{ inView: boolean }>`
     }
 `;
 
-const TextMobile = styled.span<{ inView: boolean }>`
+export const TextMobile = styled.span<{ $inView: boolean }>`
     ${tw`text-[1rem] tracking-[1.5px] leading-[1rem] text-gray-200 text-right`}
     opacity: 0;
     display: none;
     transform: translateX(-3rem);
 
-    ${({ inView }) =>
-        inView &&
+    ${({ $inView }) =>
+        $inView &&
         css`
             animation: ${slideText} 4s ease-in-out forwards;
             animation-delay: 0.5s;
@@ -216,7 +202,7 @@ const pulse = keyframes`
   100% { transform: scale(3.6); opacity: 0 }
 `;
 
-const BulletPoint = styled.div<{ inView: boolean }>`
+export const BulletPoint = styled.div<{ $inView: boolean }>`
     position: relative;
     width: 16px;
     height: 16px;
@@ -227,8 +213,8 @@ const BulletPoint = styled.div<{ inView: boolean }>`
         rgba(30, 210, 255, 0.5)
     );
 
-    ${({ inView }) =>
-        inView &&
+    ${({ $inView }) =>
+        $inView &&
         css`
             background: linear-gradient(135deg, #7a79ff, #5cdbff);
             box-shadow: 0 0 10px #7a79ff, 0 0 20px #7a79ff;
@@ -243,15 +229,15 @@ const BulletPoint = styled.div<{ inView: boolean }>`
         opacity: 0;
         transform: scale(1);
 
-        ${({ inView }) =>
-            inView &&
+        ${({ $inView }) =>
+            $inView &&
             css`
                 animation: ${pulse} 1.2s ease-out forwards;
             `}
     }
 `;
 
-const ResponsiveDiv = styled.div`
+export const ResponsiveDiv = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;

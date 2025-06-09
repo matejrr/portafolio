@@ -9,12 +9,13 @@ interface SectionProgressProps {
     inView: boolean;
 }
 
-const SectionProgress = React.memo<SectionProgressProps>(
+export const SectionProgress = React.memo<SectionProgressProps>(
     ({ label, progress, active, inView }) => (
         <SectionContainer>
-            <SectionLabel active={active} inView={inView}>
+            <SectionLabel active={active} $inView={inView}>
                 {label}
             </SectionLabel>
+
             <ProgressBar
                 value={progress * 100}
                 active={active}
@@ -30,13 +31,11 @@ const SectionProgress = React.memo<SectionProgressProps>(
         prev.label === next.label
 );
 
-export default SectionProgress;
-
 const SectionContainer = tw.div`flex flex-col gap-2 justify-center w-full min-w-[100px]`;
-const SectionLabel = styled.div<{ active: boolean; inView: boolean }>`
+const SectionLabel = styled.div<{ active: boolean; $inView: boolean }>`
     ${tw`self-center font-semibold`}
-    color: ${({ inView, active }) =>
-        inView && active ? "rgba(150,59,206,1)" : "rgba(200,200,200,1)"};
+    color: ${({ $inView, active }) =>
+        $inView && active ? "rgba(150,59,206,1)" : "rgba(200,200,200,1)"};
 
     transform: ${({ active }) => (active ? "scale(1.02)" : "none")};
 

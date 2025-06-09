@@ -4,21 +4,21 @@ import styled, { css, keyframes } from "styled-components";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     inView?: boolean;
+    active?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, inView = false, type = "text", ...props }, ref) => {
-        // your static styles
         const base = [
-            "flex h-9 w-full rounded-md border border-input bg-transparent px-4 py-1 text-base shadow-sm",
-            "transition-opacity duration-[1000ms] ease-in-out",
+            "flex h-12 w-[60%] rounded-md border border-input bg-transparent px-6 py-4 text-base shadow-sm",
+            "transition-opacity duration-[200ms] ease-in-out",
             "focus:outline-none focus:ring-0 focus:border-input", // ← no white ring, keep your input border-color
             "md:text-sm",
         ].join(" ");
 
         return (
             <StyledInput
-                inView={inView}
+                $inView={inView}
                 ref={ref}
                 type={type}
                 className={cn(base, className)}
@@ -41,7 +41,7 @@ const fadeOut = keyframes`
   to   { opacity: 0;}
 `;
 
-const StyledInput = styled.input<{ inView: boolean }>`
+const StyledInput = styled.input<{ $inView: boolean }>`
     /* your regular styles */
     width: 100%;
     height: 2.25rem;
@@ -52,8 +52,8 @@ const StyledInput = styled.input<{ inView: boolean }>`
     /* start hidden */
     opacity: 0;
 
-    ${(view) =>
-        view.inView
+    ${($inView) =>
+        $inView
             ? css`
                   animation: ${fadeIn} 1s ease-out forwards;
                   animation-delay: 1.6s; /* delay before fade-in */
