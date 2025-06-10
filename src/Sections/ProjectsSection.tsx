@@ -133,16 +133,12 @@ const NavigationMenu = styled.div`
         justify-items: center;
         align-content: center;
         row-gap: 1rem;
+        margin-top: 40px;
     }
 
     @media (max-width: 375px) {
-        padding: 14px;
         gap: 15px;
     }
-    @media (max-width: 480px) {
-        margin-bottom: 50px;
-    }
-
     @media (max-width: 320px) {
         padding: 12px;
     }

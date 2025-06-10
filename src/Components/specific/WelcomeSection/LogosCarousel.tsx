@@ -95,9 +95,6 @@ const LogosCarouselTrack = styled.div`
 const Line = styled.hr`
     ${tw`border-t border-[#0e6251] w-[80px] self-center z-0`}
 
-    @media (max-width: 750px) {
-        width: 55px;
-    }
     @media (max-width: 565px) {
         width: 45px;
     }
@@ -135,18 +132,11 @@ const Card = styled.div`
         width: 56px;
         height: 70px;
     }
-    @media (max-width: 750px) {
-        width: 48px;
-        height: 60px;
-    }
 `;
 
 const Light = styled.div`
     ${tw`absolute top-1/2 right-0 w-40 h-16 bg-[#0e6251] rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2`}
 
-    @media (max-width: 750px) {
-        width: 100px;
-    }
     @media (max-width: 565px) {
         width: 70px;
     }

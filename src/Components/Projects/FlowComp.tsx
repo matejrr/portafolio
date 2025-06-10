@@ -58,11 +58,19 @@ export const FlowComp: React.FC<FlowCompProps> = ({
             }) => (
                 <VideoComponent
                     ref={data.videoRef}
-                    width={xsSmallScreen ? "60%" : smallScreen ? "76%" : "76%"}
+                    width={
+                        xsSmallScreen
+                            ? "60%"
+                            : xxsSmallScreen
+                            ? "50%"
+                            : smallScreen
+                            ? "76%"
+                            : "76%"
+                    }
                 />
             ),
         };
-    }, [smallScreen, xsSmallScreen, VideoComponent]);
+    }, [smallScreen, xsSmallScreen, xxsSmallScreen, VideoComponent]);
 
     useEffect(() => {
         let newPosition = position.md;

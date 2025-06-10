@@ -354,6 +354,7 @@ const FlowWrapper = styled.div`
     @media (max-width: 805px) {
         align-self: center;
         margin-left: 2%;
+        min-height: 500px;
     }
     @media (max-width: 664px) {
         height: 70%;
@@ -375,6 +376,9 @@ const FlowWrapper = styled.div`
     }
     @media (max-width: 499px) {
         height: 50%;
+    }
+    @media (max-width: 445px) {
+        min-height: 350px;
     }
 `;
 

@@ -143,37 +143,22 @@ export const WelcomeText = styled.span<{ $animate: boolean }>`
 const BottomSection = styled.div`
     ${tw`min-h-max w-full mt-3.5 mb-[14rem]`}
 
-    @media (max-width: 905px) {
-        margin-top: 5rem;
-    }
-    @media (max-width: 750px) {
-        margin-top: 6rem;
-    }
-    @media (max-width: 650px) {
+    @media (max-width: 1472px) {
         margin-top: 8rem;
     }
-    @media (max-width: 565px) {
+    @media (max-width: 858px) {
+        margin-top: 11rem;
+    }
+    @media (max-width: 786px) {
+        margin-top: 14rem;
+    }
+    @media (max-width: 650px) {
         margin-top: 16rem;
     }
-    @media (max-width: 483px) {
-        margin-top: 20rem;
+    @media (max-width: 565px) {
+        margin-top: 10rem;
     }
-    @media (max-width: 470px) {
-        margin-top: 16.5rem;
-    }
-    @media (max-width: 462px) {
-        margin-top: 20rem;
-    }
-    @media (max-width: 412px) {
-        margin-top: 21.5rem;
-    }
-    @media (max-width: 387px) {
-        margin-top: 23.5rem;
-    }
-    @media (max-width: 363.5px) {
-        margin-top: 24rem;
-    }
-    @media (max-width: 347px) {
-        margin-top: 26.3rem;
+    @media (max-width: 352px) {
+        margin-top: 15rem;
     }
 `;
