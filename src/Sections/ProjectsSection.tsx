@@ -59,7 +59,7 @@ export const ProjectsSection: React.FC = () => {
                 <NavigationContainer>
                     <NavigationMenu>
                         {projectNames.map((project, index) => (
-                            <ProjectNames
+                            <ProjectName
                                 onClick={() => {
                                     if (project) {
                                         const section = document.getElementById(
@@ -77,7 +77,7 @@ export const ProjectsSection: React.FC = () => {
                                 key={index}
                             >
                                 {project}
-                            </ProjectNames>
+                            </ProjectName>
                         ))}
                     </NavigationMenu>
                 </NavigationContainer>
@@ -117,11 +117,11 @@ const Container = styled.div`
 `;
 
 const NavigationContainer = styled.div`
-    ${tw`relative flex flex-row w-full flex-1  mb-7 justify-center`}
+    ${tw`relative flex flex-row w-full flex-1 mb-7 justify-center`}
 `;
 
 const NavigationMenu = styled.div`
-    ${tw`flex flex-1 flex-row gap-8 justify-center items-center`}
+    ${tw`flex flex-1 flex-row gap-8 justify-center items-center z-20`}
 
     @media (max-width: 1024px) {
         font-size: 16px;
@@ -144,8 +144,9 @@ const NavigationMenu = styled.div`
     }
 `;
 
-const ProjectNames = styled.div`
-    ${tw`font-semibold tracking-[3px] text-white text-center w-fit cursor-pointer`}
+const ProjectName = styled.div`
+    ${tw`font-semibold tracking-[3px] text-white text-center w-fit cursor-pointer `}
+
     font-size: 0.9rem;
 
     @media (max-width: 1024px) {
