@@ -8,13 +8,29 @@ export interface Chapter {
     end: number;
 }
 // eslint-disable-next-line react-refresh/only-export-components
-export const intervals: Chapter[] = [
-    { start: 0, end: 6.5 },
-    { start: 6.5, end: 16 },
-    { start: 16, end: 25.5 },
-    { start: 25.5, end: 38 },
-    { start: 38, end: 47 },
-    { start: 47, end: 82 },
+export const intervals: Chapter[][] = [
+    [
+        { start: 0, end: 6.5 },
+        { start: 6.5, end: 16 },
+        { start: 16, end: 25.5 },
+        { start: 25.5, end: 38 },
+        { start: 38, end: 47 },
+        { start: 47, end: 82 },
+    ],
+    [
+        { start: 0, end: 46 },
+        { start: 46, end: 73 },
+        { start: 73, end: 112 },
+        { start: 112, end: 241 },
+    ],
+    [
+        { start: 0, end: 3 },
+        { start: 3, end: 13 },
+        { start: 13, end: 32 },
+        { start: 32, end: 57 },
+        { start: 57, end: 66 },
+        { start: 63, end: 103 },
+    ],
 ];
 
 interface ProgressHeaderProps {
@@ -30,7 +46,7 @@ export const ProgressHeader: React.FC<ProgressHeaderProps> = ({
 }) => {
     const data = useMemo(() => {
         return sections.map((label, idx) => {
-            const interval = intervals[idx] || { start: 0, end: 1 };
+            const interval = intervals[index][idx] || { start: 0, end: 1 };
             const duration = interval.end - interval.start;
             let progress = 0;
             let active = false;
@@ -49,7 +65,7 @@ export const ProgressHeader: React.FC<ProgressHeaderProps> = ({
                 active,
             };
         });
-    }, [sections, currentTime]);
+    }, [sections, currentTime, index]);
 
     return (
         <Container>

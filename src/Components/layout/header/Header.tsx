@@ -111,10 +111,10 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
     width: 100%;
     height: 52px;
     padding: 19px 20px;
+    gap: 40px;
     margin-top: 18px;
     background-color: transparent;
     color: white;
@@ -136,18 +136,10 @@ const borderAnimation = keyframes`
   }
 `;
 
-const LeftSection = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-`;
-
 const MiddleSection = styled.div`
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 2;
     display: flex;
+    justify-content: center;
     gap: 32px;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -156,7 +148,27 @@ const MiddleSection = styled.div`
     border: 2px solid;
     padding: 14px 35px;
 
-    @media (max-width: 670px) {
+    @media (max-width: 980px) {
+        display: none;
+    }
+`;
+
+const LeftSection = styled.div`
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+const IconsSection = styled.div`
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+    max-width: 41%;
+
+    @media (max-width: 980px) {
         display: none;
     }
 `;
@@ -168,21 +180,7 @@ const BurgerMenu = styled.div`
     cursor: pointer;
     right: 0;
 
-    @media (max-width: 670px) {
+    @media (max-width: 980px) {
         display: block;
-    }
-`;
-
-const IconsSection = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    color: white;
-    max-width: 41%;
-
-    @media (max-width: 870px) {
-        display: none;
     }
 `;

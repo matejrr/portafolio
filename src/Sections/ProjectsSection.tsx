@@ -94,7 +94,7 @@ export const ProjectsSection: React.FC = () => {
                     >
                         <ProjectWrapper
                             key={index}
-                            index={index}
+                            projectIndex={index}
                             data={project}
                         />
                     </div>
@@ -147,7 +147,7 @@ const NavigationMenu = styled.div`
 const ProjectName = styled.div`
     ${tw`font-semibold tracking-[3px] text-white text-center w-fit cursor-pointer `}
 
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 
     @media (max-width: 1024px) {
         font-size: 0.85rem;

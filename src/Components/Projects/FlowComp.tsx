@@ -16,9 +16,10 @@ import { VideoRef } from "@/data";
 interface FlowCompProps {
     videoRef: React.RefObject<HTMLVideoElement | null>;
     VideoComponent: VideoRef;
+    index: number;
 }
 
-const position = {
+const MobilePosition = {
     xxxxs: { x: 68, y: 40 },
     xxxs: { x: 73, y: 40 },
     xxs: { x: 81, y: 40 },
@@ -27,9 +28,15 @@ const position = {
     md: { x: 60, y: 55 },
 };
 
+const WebPagePosition = {
+    md: { x: -80, y: -10 },
+    md2: { x: -160, y: -65 },
+};
+
 export const FlowComp: React.FC<FlowCompProps> = ({
     videoRef,
     VideoComponent,
+    index,
 }) => {
     const [colorMode] = useState<ColorMode>("dark");
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -38,7 +45,7 @@ export const FlowComp: React.FC<FlowCompProps> = ({
             id: "1",
             type: "video",
             data: { videoRef },
-            position: position.md,
+            position: MobilePosition.md,
             draggable: false,
             selectable: false,
         },
@@ -65,27 +72,35 @@ export const FlowComp: React.FC<FlowCompProps> = ({
                             ? "50%"
                             : smallScreen
                             ? "76%"
+                            : index === 1
+                            ? "120%"
+                            : index === 2
+                            ? "140%"
                             : "76%"
                     }
                 />
             ),
         };
-    }, [smallScreen, xsSmallScreen, xxsSmallScreen, VideoComponent]);
+    }, [smallScreen, xsSmallScreen, xxsSmallScreen, VideoComponent, index]);
 
     useEffect(() => {
-        let newPosition = position.md;
+        let newPosition = MobilePosition.md;
         if (xxxxsSmallScreen) {
-            newPosition = position.xxxxs;
+            newPosition = MobilePosition.xxxxs;
         } else if (xxxsSmallScreen) {
-            newPosition = position.xxxs;
+            newPosition = MobilePosition.xxxs;
         } else if (xxsSmallScreen) {
-            newPosition = position.xxs;
+            newPosition = MobilePosition.xxs;
         } else if (xsSmallScreen) {
-            newPosition = position.xs;
+            newPosition = MobilePosition.xs;
         } else if (smallScreen) {
-            newPosition = position.s;
+            newPosition = MobilePosition.s;
+        } else if (index === 1) {
+            newPosition = WebPagePosition.md;
+        } else if (index === 2) {
+            newPosition = WebPagePosition.md2;
         } else {
-            newPosition = position.md;
+            newPosition = MobilePosition.md;
         }
         setNodes((prev) =>
             prev.map((node) =>
@@ -98,6 +113,7 @@ export const FlowComp: React.FC<FlowCompProps> = ({
         xxsSmallScreen,
         xxxsSmallScreen,
         xxxxsSmallScreen,
+        index,
         setNodes,
     ]);
 

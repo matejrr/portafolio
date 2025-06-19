@@ -138,12 +138,6 @@ enum FieldsOfWork {
     dataBase = "Creation & Administration of DataBase",
 }
 
-enum LayOut {
-    left = "left",
-    center = "center",
-    right = "right",
-}
-
 interface ProjectImagesProps {
     techStack: React.JSX.Element[];
     image: string;
@@ -167,6 +161,11 @@ export type VideoRef = React.ForwardRefExoticComponent<
 export interface Sections {
     name: string;
     sections: string[];
+}
+
+export enum LayOut {
+    mobileApp = "mobileApp",
+    webPage = "webPage",
 }
 
 export interface ProjectProps {
@@ -216,25 +215,7 @@ export const projectSections: { [key: string]: Sections } = {
     },
     artPlatform: {
         name: "Web Page",
-        sections: [
-            "Landing",
-            "Artist Admin",
-            "Artist Page",
-            "Shop",
-            "Artwork Details",
-            "...",
-        ],
-    },
-    biometricReg: {
-        name: "Biometric Registration",
-        sections: [
-            "Registration",
-            "Pop Up Notification",
-            "filter",
-            "update",
-            "delete",
-            "...",
-        ],
+        sections: ["Artist Page", "Shop", "Landing", "Artist Admin", "..."],
     },
 };
 const detailedExplanation = {
@@ -248,15 +229,8 @@ const detailedExplanation = {
         "Elite is being built as an all-in-one art fulfillment platform that handles outreach, sales, printing, framing, and delivery, so artists can focus solely on creating.",
         "Visitors browse or search artists, preview artworks in simulated rooms, tweak framing and lighting, and order prints or commissions seamlessly on web (with mobile apps coming soon).",
         "A tiered subscription unlocks everything from basic listings to advanced gallery customization and promotion, while each artist's dashboard centralizes uploads, layouts, sales tracking, and commission management.",
-        "By coordinating printing, framing, and shipping under one roof, Elite streamlines logistics, cuts lead times, and scales with creators—eliminating operational headaches.",
+        "By coordinating printing, framing, and shipping under one roof, Elite streamlines logistics and cuts lead times.",
     ],
-
-    biometricReg: [
-        "Employees enroll via secure fingerprint or facial scans that are encrypted and stored immediately.",
-        "Attendance is updated in real time with every biometric clock-in/out, eliminating buddy-punching and ensuring accuracy.",
-        "A unified admin dashboard lets HR browse, filter, edit employee details, reset templates, assign roles, and export reports with ease.",
-    ],
-
     portfolio: [
         "A single-page portfolio introduces me, my journey, and what fuels my passion for crafting web and mobile experiences.",
         "A consistent, minimalist design with thoughtful micro-interactions highlights my attention to detail and creative flair.",
@@ -302,24 +276,13 @@ const ProjectImages: ProjectImages = {
         ],
         image: images.onlineGallery,
     },
-    biometricReg: {
-        techStack: [
-            Logos.php(),
-            Logos.javascript(),
-            Logos.mariadb(),
-            Logos.html(),
-            Logos.css(),
-            Logos.bootstrap(),
-        ],
-        image: images.biometricReg,
-    },
 };
 
 // -----------------------------------------  PROJECTS => PROJECTS  -----------------------------------------
 
 export const projectsData: ProjectProps[] = [
     {
-        projectName: "Delivery App",
+        projectName: "DELIVERY APP",
         date: "Sept 2024 - March 2025",
         finished: "Finished",
         description: "Mobile application",
@@ -330,15 +293,32 @@ export const projectsData: ProjectProps[] = [
         images: ProjectImages.deliveryApp,
         cardIndex: 1,
         detailedExplanation: detailedExplanation.deliveryApp,
-        layOut: LayOut.left,
+        layOut: LayOut.mobileApp,
         video: Demos.deliveryApp,
         sections: projectSections.deliveryApp,
         animationName: "android",
     },
     {
-        projectName: "Portfolio",
+        projectName: "ART PLATFORM",
+        date: "Jan 2025 - Present",
+        finished: "In Progress",
+        description: "Transportation and Art Selling Platform",
+        explanation:
+            "Development of an Online Gallery that will manage all transportation, selling, printing and framing of artworks in Slovakia",
+        GitHubSrc: null,
+        roles: ["Fullstack Developer / UI Designer"],
+        images: ProjectImages.artPlatform,
+        cardIndex: 3,
+        detailedExplanation: detailedExplanation.ArtPlatform,
+        layOut: LayOut.webPage,
+        video: Demos.artPlatform,
+        sections: projectSections.artPlatform,
+        animationName: "web",
+    },
+    {
+        projectName: "PORTFOLIO",
         date: "April 2025 - May 2025",
-        finished: "Finished",
+        finished: "In Progress",
         description: "Modern portafolio",
         explanation:
             "A single page modern portafolio with a personal design that reflects my works, achievements and goals as a programmer",
@@ -347,44 +327,10 @@ export const projectsData: ProjectProps[] = [
         images: ProjectImages.portafolio,
         cardIndex: 2,
         detailedExplanation: detailedExplanation.portfolio,
-        layOut: LayOut.center,
+        layOut: LayOut.webPage,
         video: Demos.portfolio,
         sections: projectSections.portafolio,
         animationName: "web",
-    },
-    {
-        projectName: "Art Platform",
-        date: "Jan 2025 - Present",
-        finished: "In Progress",
-        description: "Transportation and Art Selling Platform",
-        explanation:
-            "Development of an Online Gallery that will manage all transportation, selling, printing and framing of artworks in the Canary Islands",
-        GitHubSrc: null,
-        roles: ["Fullstack Developer / UI Designer"],
-        images: ProjectImages.artPlatform,
-        cardIndex: 3,
-        detailedExplanation: detailedExplanation.ArtPlatform,
-        layOut: LayOut.right,
-        video: Demos.artPlatform,
-        sections: projectSections.artPlatform,
-        animationName: "web",
-    },
-    {
-        projectName: "Biometric Registration",
-        date: "Oct 2024 - Nov 2024",
-        finished: "Finished",
-        description: "Development of user authentication systems",
-        explanation:
-            "Development of a biometric user registration system, a push notification automation, and an admin application to manage and visualise data stored in a database",
-        GitHubSrc: null,
-        roles: ["Fullstack Developer"],
-        images: ProjectImages.biometricReg,
-        cardIndex: 4,
-        detailedExplanation: detailedExplanation.biometricReg,
-        layOut: LayOut.left,
-        video: Demos.biomRegistration,
-        sections: projectSections.biometricReg,
-        animationName: "fingerprint",
     },
 ];
 

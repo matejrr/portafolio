@@ -26,7 +26,6 @@ export const images = {
     axios: new URL("./axios.svg", import.meta.url).href,
     deliveryApp: new URL("./DeliveryApp.png", import.meta.url).href,
     onlineGallery: new URL("./online-gallery.png", import.meta.url).href,
-    biometricReg: new URL("./Biometric.png", import.meta.url).href,
     portfolio: new URL("./portfolio.png", import.meta.url).href,
     reactNative: new URL("./reactNative.svg", import.meta.url).href,
     php: new URL("./php.svg", import.meta.url).href,
@@ -45,9 +44,8 @@ export const images = {
 
 export const demos = {
     deliveryApp: new URL("./HOT2EAT.mp4", import.meta.url).href,
-    portfolio: new URL("./HOT2EAT.mp4", import.meta.url).href,
-    artPlatform: new URL("./HOT2EAT.mp4", import.meta.url).href,
-    biomRegistration: new URL("./HOT2EAT.mp4", import.meta.url).href,
+    artPlatform: new URL("./ArtPlatform.mp4", import.meta.url).href,
+    portfolio: new URL("./Portfolio.mp4", import.meta.url).href,
 };
 
 interface AnimationsProps {
