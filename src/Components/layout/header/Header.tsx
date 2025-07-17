@@ -6,6 +6,7 @@ import { RequestCallDialog } from "./RequestCallDialog";
 import { Logos } from "@/Components/shared/Logos";
 
 export const Header: FC = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const [sections, setSections] = useState<{
         welcome: HTMLElement | null;
         works: HTMLElement | null;
@@ -21,8 +22,6 @@ export const Header: FC = () => {
         aboutMe: null,
         contact: null,
     });
-
-    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         setSections({

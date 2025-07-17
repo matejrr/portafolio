@@ -52,25 +52,6 @@ export const WorksInfo: WorkProps[] = [
         ],
         index: 1,
     },
-    {
-        firmName: "Touch4IT",
-        position: "FullStack Developer",
-        timeSpan: "Feb 2022 - Sep 2022 (NDA)",
-        responsabilities: "Development of web Applications",
-        explanation:
-            "Creation of reusable components, development of responsive designs, building dynamic UIs & optimisation",
-        technologies: [
-            "React.js",
-            "Typescript",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "Mongoose",
-            "Tailwind",
-            "Styled-Components",
-        ],
-        index: 2,
-    },
 ];
 
 // -----------------------------------------  SKILLS  -----------------------------------------

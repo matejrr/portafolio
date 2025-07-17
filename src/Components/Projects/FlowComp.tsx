@@ -12,6 +12,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import "@xyflow/react/dist/style.css";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { VideoRef } from "@/data";
+import { VideoNode } from "./VideoNode";
 
 interface FlowCompProps {
     videoRef: React.RefObject<HTMLVideoElement | null>;
@@ -30,7 +31,7 @@ const MobilePosition = {
 
 const WebPagePosition = {
     md: { x: -80, y: -10 },
-    md2: { x: -160, y: -65 },
+    md2: { x: 0, y: 40 },
 };
 
 export const FlowComp: React.FC<FlowCompProps> = ({
@@ -40,48 +41,44 @@ export const FlowComp: React.FC<FlowCompProps> = ({
 }) => {
     const [colorMode] = useState<ColorMode>("dark");
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-    const [nodes, setNodes, onNodesChange] = useNodesState([
-        {
-            id: "1",
-            type: "video",
-            data: { videoRef },
-            position: MobilePosition.md,
-            draggable: false,
-            selectable: false,
-        },
-    ]);
+
+    const nodeData = useMemo(
+        () => ({
+            videoRef,
+            index,
+            VideoComponent,
+        }),
+        [videoRef, index, VideoComponent]
+    );
+
+    const InitialNodes = useMemo(
+        () => [
+            {
+                id: "1",
+                type: "video",
+                data: nodeData,
+                position: MobilePosition.md,
+                draggable: false,
+                selectable: false,
+            },
+        ],
+        [nodeData]
+    );
+
+    const [nodes, setNodes, onNodesChange] = useNodesState(InitialNodes);
+
     const smallScreen = useMediaQuery("(max-width: 860px)");
     const xsSmallScreen = useMediaQuery("(max-width: 805px)");
     const xxsSmallScreen = useMediaQuery("(max-width: 456px)");
     const xxxsSmallScreen = useMediaQuery("(max-width: 420px)");
     const xxxxsSmallScreen = useMediaQuery("(max-width: 390px)");
 
-    const nodeTypes = useMemo(() => {
-        return {
-            video: ({
-                data,
-            }: {
-                data: { videoRef: React.RefObject<HTMLVideoElement> };
-            }) => (
-                <VideoComponent
-                    ref={data.videoRef}
-                    width={
-                        xsSmallScreen
-                            ? "60%"
-                            : xxsSmallScreen
-                            ? "50%"
-                            : smallScreen
-                            ? "76%"
-                            : index === 1
-                            ? "120%"
-                            : index === 2
-                            ? "140%"
-                            : "76%"
-                    }
-                />
-            ),
-        };
-    }, [smallScreen, xsSmallScreen, xxsSmallScreen, VideoComponent, index]);
+    const nodeTypes = useMemo(
+        () => ({
+            video: VideoNode,
+        }),
+        []
+    );
 
     useEffect(() => {
         let newPosition = MobilePosition.md;

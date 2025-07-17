@@ -24,12 +24,12 @@ export const intervals: Chapter[][] = [
         { start: 112, end: 241 },
     ],
     [
-        { start: 0, end: 3 },
-        { start: 3, end: 13 },
-        { start: 13, end: 32 },
-        { start: 32, end: 57 },
-        { start: 57, end: 66 },
-        { start: 63, end: 103 },
+        { start: 0, end: 1 },
+        { start: 1, end: 6 },
+        { start: 6, end: 18 },
+        { start: 18, end: 39 },
+        { start: 39, end: 43 },
+        { start: 43, end: 103 },
     ],
 ];
 

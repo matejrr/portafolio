@@ -16,8 +16,6 @@ export const Project: React.FC<ProjectSectionProps> = ({ data, index }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    console.log(index);
-
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
