@@ -26,7 +26,7 @@ export const Demos = {
         )
     ),
     artPlatform: React.forwardRef<HTMLVideoElement, DemoVideoProps>(
-        ({ width = "100%" }, ref) => (
+        ({ width = "112%" }, ref) => (
             <video
                 ref={ref}
                 src={demos.artPlatform}

@@ -14,7 +14,7 @@ export const WelcomeSection: React.FC = () => {
         <SectionContainer id="welcome-section">
             <TopSection>
                 <Welcome>
-                    <Greetings>HI THERE 👋🏼</Greetings>
+                    <Greetings>HI THERE</Greetings>
                     <SubHeader $animate={animate}>My name's Matej</SubHeader>
                     <WelcomeText $animate={animate}>
                         I'm a FullStack Developer
@@ -33,17 +33,15 @@ const SectionContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 70vh;
     overflow-y: visible;
     overflow-x: visible;
     gap: 15rem;
 
     @media (max-width: 1472px) {
-        min-height: 75vh;
         gap: 4.5rem;
     }
     @media (max-width: 483px) {
-        min-height: 42vh;
+        min-height: 42dvh;
         gap: 4.5rem;
     }
 `;

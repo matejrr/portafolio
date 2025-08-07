@@ -21,7 +21,7 @@ const Card: React.FC<WorkProps> = ({
     index,
 }) => {
     return (
-        <div className="flex justify-center items-center w-full h-auto mt-10 mb-6">
+        <div className="flex justify-center items-center w-full h-auto mt-10 mb-6 ml-1 mr-[10px]">
             <CardContainer>
                 <div className="w-full">
                     <Header>
@@ -49,14 +49,32 @@ const Card: React.FC<WorkProps> = ({
 
 export default Card;
 
-const CardContainer = tw.div`
-    flex flex-col gap-4 opacity-100 w-[75%] p-6 rounded-lg bg-white/5 border border-white/10
-    transition-all duration-200 ease-in-out hover:scale-102
-    hover:bg-section-works-card1  hover:cursor-not-allowed
+const CardContainer = styled.div`
+    ${tw`flex flex-col gap-4 w-[78%] rounded-lg border border-white/10 transition-all duration-200 ease-in-out`}
+
+    padding: clamp(1rem, 4vw, 2rem);
+    background-color: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        background-color: var(--color-section-works-card1);
+        transform: scale(1.02);
+        cursor: default;
+
+        @media (hover: none) {
+            transform: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
-const Content = tw.div`
-  flex flex-col gap-3.5 pl-10
+const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: clamp(0.5rem, 3vw, 2.5rem);
 `;
 
 const Header = styled.div`
@@ -78,21 +96,15 @@ const VerticalLine = styled.span`
 `;
 
 const FirmName = styled.h2`
-    ${tw`text-xl font-semibold text-white min-w-fit`}
-
-    @media (max-width: 460px) {
-        text-align: left;
-        font-size: 16px;
-    }
-    @media (max-width: 365px) {
-        font-size: 16px;
-    }
+    ${tw`text-white font-semibold`}
+    font-size: clamp(1rem, 2vw + 0.2rem, 1.3rem);
+    text-align: left;
 `;
 
 const TimeSpan = styled.h2.withConfig({
     shouldForwardProp: (prop) => prop !== "index",
 })<{ $index: number }>(({ $index }) => ({
-    fontSize: "20px",
+    fontSize: "clamp(0.9rem, 1.8vw, 1.2rem)",
     fontWeight: "bold",
     textAlign: "right",
     display: "inline-block",
@@ -108,15 +120,8 @@ const TimeSpan = styled.h2.withConfig({
           }
         : { color: "white" }),
 
-    "@media (max-width: 1430px)": {
+    "@media (max-width: 768px)": {
         textAlign: "left",
-        fontSize: "16px",
-    },
-    "@media (max-width: 460px)": {
-        fontSize: "14px",
-    },
-    "@media (max-width: 365px)": {
-        fontSize: "14px",
     },
 }));
 
@@ -133,16 +138,9 @@ const TextGradients = [
 ];
 
 const Position = styled.p<{ $index: number }>`
-    ${tw`text-base font-medium`}
-    color: ${({ $index }) => TextGradients[$index].color}
-
-    @media (max-width: 460px) {
-        text-align: left;
-        font-size: 14px;
-    }
-    @media (max-width: 365px) {
-        font-size: 14px;
-    }
+    ${tw`font-medium`}
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    color: ${({ $index }) => TextGradients[$index].color};
 `;
 
 const Section = tw.div`
@@ -150,26 +148,14 @@ const Section = tw.div`
 `;
 
 const SectionHeader = styled.h3`
-    ${tw`text-white/80 uppercase tracking-wider [letter-spacing: 0.12rem]`}
-
-    @media (max-width: 490px) {
-        letter-spacing: 0.1rem;
-        font-size: 14px;
-    }
-    @media (max-width: 330px) {
-        letter-spacing: 0.05rem;
-        font-size: 14px;
-    }
-    @media (max-width: 290px) {
-        letter-spacing: 0.05rem;
-        font-size: 14px;
-    }
+    ${tw`uppercase text-white/80`}
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    letter-spacing: clamp(0.04rem, 0.2vw, 0.12rem);
 `;
 
 const SectionText = styled.p`
-    ${tw`text-white/60 leading-relaxed tracking-wider`}
-
-    @media (max-width: 490px) {
-        font-size: 14px;
-    }
+    ${tw`text-white/60 leading-relaxed`}
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    line-height: 1.6rem;
+    letter-spacing: 0.02rem;
 `;

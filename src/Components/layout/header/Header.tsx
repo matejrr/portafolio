@@ -2,20 +2,18 @@ import HeaderAnimatLinks from "./HeaderAnimatLinks";
 import styled, { keyframes } from "styled-components";
 import { FC, useEffect, useState } from "react";
 import { Icons } from "@/Components/shared/Icons";
-import { RequestCallDialog } from "./RequestCallDialog";
 import { Logos } from "@/Components/shared/Logos";
+import BurgerDialog from "@/Components/ui/BurgerSheet";
 
 export const Header: FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [openBurgerSheet, setOpenBurgerSheet] = useState(false);
     const [sections, setSections] = useState<{
-        welcome: HTMLElement | null;
         works: HTMLElement | null;
         skills: HTMLElement | null;
         projects: HTMLElement | null;
         aboutMe: HTMLElement | null;
         contact: HTMLElement | null;
     }>({
-        welcome: null,
         works: null,
         skills: null,
         projects: null,
@@ -25,7 +23,6 @@ export const Header: FC = () => {
 
     useEffect(() => {
         setSections({
-            welcome: document.getElementById("welcome-section"),
             works: document.getElementById("works-section"),
             skills: document.getElementById("skills-section"),
             projects: document.getElementById("projects-section"),
@@ -37,23 +34,37 @@ export const Header: FC = () => {
     return (
         <HeaderContainer>
             <BurgerMenu>
-                <Icons.burger />
+                {openBurgerSheet ? (
+                    <BurgerDialog
+                        sections={sections}
+                        openBurgerSheet={openBurgerSheet}
+                        setOpenBurgerSheet={setOpenBurgerSheet}
+                    />
+                ) : (
+                    <Icons.burger onClick={() => setOpenBurgerSheet(true)} />
+                )}
             </BurgerMenu>
             <LeftSection />
             <MiddleSection>
                 <HeaderAnimatLinks
+                    openBurgerSheet={openBurgerSheet}
+                    delay="20ms"
                     text="WORKS"
                     onClick={() =>
                         sections.works?.scrollIntoView({ behavior: "smooth" })
                     }
                 />
                 <HeaderAnimatLinks
+                    openBurgerSheet={openBurgerSheet}
+                    delay="40ms"
                     text="SKILLS"
                     onClick={() =>
                         sections.skills?.scrollIntoView({ behavior: "smooth" })
                     }
                 />
                 <HeaderAnimatLinks
+                    openBurgerSheet={openBurgerSheet}
+                    delay="60ms"
                     text="PROJECTS"
                     onClick={() =>
                         sections.projects?.scrollIntoView({
@@ -62,24 +73,21 @@ export const Header: FC = () => {
                     }
                 />
                 <HeaderAnimatLinks
-                    text="ABOUT&nbsp;ME"
+                    openBurgerSheet={openBurgerSheet}
+                    delay="80ms"
+                    text="ABOUT ME"
                     onClick={() =>
                         sections.aboutMe?.scrollIntoView({ behavior: "smooth" })
                     }
                 />
                 <HeaderAnimatLinks
+                    openBurgerSheet={openBurgerSheet}
+                    delay="100ms"
                     text="CONTACT"
                     onClick={() =>
                         sections.contact?.scrollIntoView({ behavior: "smooth" })
                     }
                 />
-                <HeaderAnimatLinks
-                    text="REQUEST&nbsp;CALL"
-                    onClick={() => setIsOpen(true)}
-                />
-                {isOpen && (
-                    <RequestCallDialog isOpen={isOpen} setIsOpen={setIsOpen} />
-                )}
             </MiddleSection>
 
             <IconsSection>
@@ -90,16 +98,10 @@ export const Header: FC = () => {
                     <Logos.linkedin />
                 </a>
                 <a
-                    className="w-[24px] h-auto"
-                    href="https://www.facebook.com/MatejRR"
+                    className="w-[25.7px] h-auto"
+                    href="https://github.com/matejrr"
                 >
-                    <Logos.facebook />
-                </a>
-                <a
-                    className="w-[25px] h-auto"
-                    href="https://www.instagram.com/matejruzickaruzicka/"
-                >
-                    <Logos.instagram />
+                    <Logos.github />
                 </a>
             </IconsSection>
         </HeaderContainer>
@@ -164,7 +166,7 @@ const IconsSection = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 25px;
+    gap: 22px;
     max-width: 41%;
 
     @media (max-width: 980px) {

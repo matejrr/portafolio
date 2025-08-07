@@ -31,28 +31,33 @@ export const QuickMessage: React.FC = () => {
                                     Want to know more about any specific
                                     section?
                                 </Text>
-                                <TextMobile $inView={inView}>DM me</TextMobile>
+                                <TextMobile $inView={inView}>
+                                    Quick Message?
+                                </TextMobile>
                             </ObserverWrapper>
                         </LeftSide>
 
                         <RightSide>
-                            <Input
-                                inView={inView}
-                                style={{
-                                    fontSize: "0.9rem",
-                                    letterSpacing: "0.7px",
-                                    padding: "1.5rem 1rem",
-                                    border: quickMessage
-                                        ? "2px solid rgba(30,210,255, 0.6)"
-                                        : "1.5px solid rgba(30,190,255, 0.4)",
-                                    transition: "border 1s ease-in-out",
-                                }}
-                                name="message"
-                                value={quickMessage}
-                                onChange={(e) =>
-                                    setQuickMessage(e.target.value)
-                                }
-                            />
+                            <ResponsiveInputWrapper>
+                                <Input
+                                    inView={inView}
+                                    style={{
+                                        fontSize: "0.9rem",
+                                        letterSpacing: "0.7px",
+                                        padding: "1.2rem 1rem",
+                                        width: "100%",
+                                        border: quickMessage
+                                            ? "2px solid rgba(30,210,255, 0.6)"
+                                            : "1.5px solid rgba(30,190,255, 0.4)",
+                                        transition: "border 1s ease-in-out",
+                                    }}
+                                    name="message"
+                                    value={quickMessage}
+                                    onChange={(e) =>
+                                        setQuickMessage(e.target.value)
+                                    }
+                                />
+                            </ResponsiveInputWrapper>
                         </RightSide>
                     </ResponsiveDiv>
                 )}
@@ -78,32 +83,31 @@ export const QuickMessage: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`flex flex-col gap-3 self-center w-[100%] min-h-[14rem] pt-14 justify-center  rounded-[10px] pl-[2.4rem] pr-14 z-20 [box-shadow: inset -800px 50px 100px black, inset 800px 50px 100px black, -50px 50px 100px black]`}
+    ${tw`flex flex-col gap-3 self-center w-full min-h-[14rem] pt-14 justify-center rounded-[10px] px-14 z-20`}
+    box-shadow: inset -800px 50px 100px black, inset 800px 50px 100px black, -50px 50px 100px black;
 
-    @media (max-width: 1472px) {
-        min-height: 0px;
-        padding-top: 0px;
-    }
     @media (max-width: 1355px) {
         width: 95%;
     }
-    @media (max-width: 1093px) {
-        margin-top: 3rem;
-    }
-    @media (max-width: 1065px) {
-        padding-right: 50px
-        padding-left: 50px;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
     }
 `;
 
 const LeftSide = styled.div`
-    ${tw`flex flex-row justify-center items-center min-w-[44.5%] gap-2 h-full text-md tracking-wide [letter-spacing: 0.2rem]`}
+    ${tw`flex flex-row justify-start items-center min-w-[44.5%] gap-2 h-full text-md tracking-wide`}
+
+    @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+    }
 
     @media (max-width: 414px) {
-        display: flex;
-        justify-content: left;
+        justify-content: flex-start;
     }
 `;
+
 export const ObserverWrapper = styled.div`
     ${tw`relative flex items-center gap-5`}
 
@@ -117,6 +121,16 @@ const RightSide = styled.div`
 
     @media (max-width: 1065px) {
         padding-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+`;
+const ResponsiveInputWrapper = styled.div`
+    width: 100%;
+    max-width: 100%;
+
+    @media (max-width: 768px) {
+        width: 100%;
     }
 `;
 
@@ -144,6 +158,7 @@ const AvatarWrapper = styled.div<{ $inView: boolean }>`
         css`
             animation: ${popAvatar} 4.5s ease-out forwards;
         `}
+
     @media (max-width: 490px) {
         display: none;
     }
@@ -243,12 +258,12 @@ export const ResponsiveDiv = styled.div`
     width: 100%;
 
     @media (max-width: 1065px) {
-        display: flex;
-        align-items: start;
         flex-direction: column;
-        align-self: center;
-        justify-content: center;
         gap: 2rem;
-        margin: 0px 100px;
+        padding: 0 2rem;
+    }
+
+    @media (max-width: 640px) {
+        padding: 0 1rem;
     }
 `;

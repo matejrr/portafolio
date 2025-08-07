@@ -1,3 +1,9 @@
+import React from "react";
+
+type IconProps = {
+    onClick?: React.MouseEventHandler<SVGSVGElement>;
+};
+
 export const Icons = {
     magnifierGlass: () => {
         return (
@@ -17,9 +23,10 @@ export const Icons = {
             </svg>
         );
     },
-    goBack: () => {
+    goBack: ({ onClick }: IconProps) => {
         return (
             <svg
+                onClick={onClick}
                 style={{
                     color: "white",
                     fill: "white",
@@ -59,14 +66,16 @@ export const Icons = {
             </svg>
         );
     },
-    burger: () => {
+    burger: ({ onClick }: IconProps) => {
         return (
             <svg
+                onClick={onClick}
                 style={{
                     width: "25px",
                     height: "auto",
                     color: "white",
                     stroke: "white",
+                    cursor: "pointer",
                 }}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"

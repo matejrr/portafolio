@@ -64,7 +64,8 @@ export const WorkSection: React.FC = () => {
         <Container id="works-section">
             <TopTextContainer>
                 <WorkType>
-                    Specializing in Frontend, with strong Fullstack experience.
+                    Frontend-focused developer with solid fullstack
+                    capabilities.
                 </WorkType>
                 <Header $headerAnimation={headerAnimation}>
                     From my first lines of code to professional experience —
@@ -84,7 +85,7 @@ export const WorkSection: React.FC = () => {
                     </div>
                 </Label>
                 {WorksInfo.map((work, index) => (
-                    <CardContainer
+                    <CardsContainer
                         ref={(el: HTMLDivElement | null) =>
                             (cardRef.current[index] = el)
                         }
@@ -101,7 +102,7 @@ export const WorkSection: React.FC = () => {
                             explanation={work.explanation}
                             technologies={Array(work.technologies.join(", "))}
                         />
-                    </CardContainer>
+                    </CardsContainer>
                 ))}
             </Works>
         </Container>
@@ -109,7 +110,10 @@ export const WorkSection: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`flex flex-col items-center gap-14 pt-6 justify-end pb-36 self-center w-[93%] h-[100%] bg-section-works-tericary opacity-100 rounded-[10px] z-10`}
+    ${tw`flex flex-col items-center self-center justify-end w-[93%] h-full rounded-[10px] z-10`}
+    padding: clamp(1rem, 4vw, 6rem) 0 clamp(3rem, 6vw, 9rem);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    background-color: var(--color-section-works-tericary);
     border: 0.2px solid transparent;
     border-image-source: linear-gradient(
         to bottom,
@@ -119,6 +123,7 @@ const Container = styled.div`
     );
     border-image-slice: 1;
 `;
+
 const Works = styled.div`
     ${tw`flex flex-col flex-1 w-[90%] h-auto pb-6 bg-section-works-tericary rounded-[10px] z-30 justify-start relative`}
     border: 0.2px solid transparent;
@@ -132,49 +137,44 @@ const Works = styled.div`
     border-image-slice: 1;
 `;
 
-const TopTextContainer = tw.div`
-    w-full flex flex-col gap-10 pl-[4.2rem] py-10
+const TopTextContainer = styled.div`
+    ${tw`w-full flex flex-col`}
+    padding: clamp(1.5rem, 4vw, 4.2rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
 `;
 
-const WorkType = tw.span`
-    text-sm text-section-works-highlight tracking-[2.3px] leading-[1.7rem] w-[80%]
+const WorkType = styled.span`
+    ${tw`text-section-works-highlight`}
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    line-height: 1.6rem;
+    letter-spacing: 2px;
+    width: 90%;
 `;
 
 const Header = styled.div<{ $headerAnimation: boolean }>`
-    ${tw`flex flex-col gap-5 text-4xl text-white text-start w-[50%] h-[17%] tracking-[2px] leading-[3rem] z-10`}
+    ${tw`flex flex-col text-white text-start z-10`}
+    font-size: clamp(1.2rem, 2.5vw + 0.5rem, 2.5rem);
+    line-height: clamp(1.8rem, 3vw + 1rem, 3.5rem);
+    width: 100%;
+    max-width: 900px;
+    gap: clamp(1rem, 2vw, 2rem);
 
     opacity: ${({ $headerAnimation }) => ($headerAnimation ? 1 : 0)};
     transform: ${({ $headerAnimation }) =>
         $headerAnimation ? "translateX(0.2rem)" : "translateX(-1rem)"};
     transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
 
-    @media (max-width: 950px) {
-        width: 90%;
-    }
-    @media (max-width: 758px) {
-        transform: ${({ $headerAnimation }) =>
-            $headerAnimation ? "translateX(1rem)" : "translateX(-1rem)"};
-        transition: opacity 1.3s ease-in-out, transform 1.6s ease-in-out;
-    }
     @media (max-width: 600px) {
-        width: 80%;
-        font-size: 2rem;
+        transform: none;
+        transition: opacity 1s ease-in-out;
     }
-    @media (max-width: 465px) {
-        font-size: 1.5rem;
-        line-height: 2rem;
-        gap: 1rem;
-        padding-top: 0rem;
-        margin-top: 0rem;
-        left: 0;
-
-    @media (max-width: 400px) {
-        font-size: 1.3rem;
-        line-height: 1.6rem;
 `;
 
-const SubHeader = tw.span`
-    text-md tracking-[2px] leading-[1.7rem] w-[80%] text-gray-200
+const SubHeader = styled.span`
+    ${tw`text-gray-200`}
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: clamp(1.4rem, 2vw + 0.5rem, 1.8rem);
+    max-width: 90%;
 `;
 
 const Label = tw.div`
@@ -182,7 +182,7 @@ const Label = tw.div`
     border-b-[0.2px] border-section-works-primary z-10
 `;
 
-const CardContainer = tw.div`
+const CardsContainer = tw.div`
     flex items-center relative w-full h-[100%]
 `;
 

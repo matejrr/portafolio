@@ -54,7 +54,7 @@ export const Contact: React.FC = () => {
 
     useEffect(() => {
         function handleAnimation() {
-            if (window.scrollY > 8850) {
+            if (window.scrollY > 7300) {
                 setHeaderAnimation(true);
             }
         }
@@ -129,7 +129,7 @@ export const Contact: React.FC = () => {
             <Form {...form}>
                 <div className="w-full p-5 flex justify-center">
                     <form
-                        className="flex flex-col gap-7 w-[50%] max-w-screen-xl  "
+                        className="flex flex-col gap-7 w-[50%] max-w-screen-xl"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <FormField
@@ -141,14 +141,15 @@ export const Contact: React.FC = () => {
 
                                 return (
                                     <FormItem className="flex flex-col items-center gap-2">
-                                        <FormLabel className="flex justify-start w-[99%] text-md tracking-wider text-white">
+                                        <FormLabel className="flex justify-start w-[100%] min-w-[290px] text-md tracking-wider text-white">
                                             FullName*
                                         </FormLabel>
 
-                                        <div className="flex flex-row items-center gap-6 w-[100%]">
+                                        <div className="flex flex-row items-center justify-center gap-6 w-[100%]">
                                             <FormControl>
                                                 <Input
                                                     style={{
+                                                        minWidth: "290px",
                                                         minHeight: "3.1rem",
                                                         border: fieldState.isDirty
                                                             ? "2px solid #cc5200"
@@ -196,13 +197,14 @@ export const Contact: React.FC = () => {
 
                                 return (
                                     <FormItem className="flex flex-col items-center gap-2">
-                                        <FormLabel className="flex justify-start w-[99%] text-md tracking-wider text-white">
+                                        <FormLabel className="flex justify-start w-[100%] min-w-[290px] text-md tracking-wider text-white">
                                             Email*
                                         </FormLabel>
-                                        <div className="flex flex-row items-center gap-4 w-[100%]">
+                                        <div className="flex flex-row items-center justify-center gap-4 w-[100%]">
                                             <FormControl>
                                                 <Input
                                                     style={{
+                                                        minWidth: "290px",
                                                         minHeight: "3.1rem",
                                                         border: fieldState.isDirty
                                                             ? "2px solid #cc5200"
@@ -247,13 +249,14 @@ export const Contact: React.FC = () => {
                                     fieldState.isDirty && !fieldState.error;
                                 return (
                                     <FormItem className="flex flex-col items-center gap-2">
-                                        <FormLabel className="flex justify-start w-[99%] text-md tracking-wider text-white">
+                                        <FormLabel className="flex justify-start w-[100%] min-w-[290px] text-md tracking-wider text-white">
                                             Subject*
                                         </FormLabel>
-                                        <div className="flex flex-row items-center gap-4 w-[100%]">
+                                        <div className="flex flex-row items-center justify-center gap-4 w-[100%]">
                                             <FormControl>
                                                 <Input
                                                     style={{
+                                                        minWidth: "290px",
                                                         minHeight: "3.1rem",
                                                         border: fieldState.isDirty
                                                             ? "2px solid #cc5200"
@@ -295,12 +298,13 @@ export const Contact: React.FC = () => {
                             name="message"
                             render={({ field, fieldState }) => (
                                 <FormItem className="flex flex-col items-center gap-2">
-                                    <FormLabel className="flex justify-start w-[99%] text-md tracking-wider text-white">
+                                    <FormLabel className="flex justify-start w-[100%] min-w-[290px] text-md tracking-wider text-white items-center">
                                         Message*
                                     </FormLabel>
                                     <FormControl>
                                         <textarea
                                             style={{
+                                                minWidth: "290px",
                                                 borderRadius: "12px",
                                                 border: fieldState.isDirty
                                                     ? "2px solid #cc5200"
@@ -339,8 +343,12 @@ export const Contact: React.FC = () => {
 
 export default React.memo(Contact);
 
-const Container = tw.div`
-   flex flex-col items-center self-center gap-16 h-auto pt-[6%] w-[100%] mb-36 z-20 px-[39.2px]
+const Container = styled.div`
+    ${tw`flex flex-col items-center self-center gap-16 h-auto pt-[6%] w-[100%] mb-36 z-20 px-[39.2px]`}
+
+    @media (max-width: 1200px) {
+        margin-bottom: 45vh;
+    }
 `;
 
 const MainSecDesign = styled.div`
@@ -367,6 +375,7 @@ const Header = styled.span`
     border-r border-l
     rounded-[10px] rounded-br-[10px]
     overflow-hidden
+    min-w-[300px]
   `}
 
     border-left: 1px solid #e6288c;

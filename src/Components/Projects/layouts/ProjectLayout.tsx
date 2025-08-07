@@ -7,7 +7,6 @@ import {
     WebPageExtraInfo,
     WebPageFlowWrapper,
     WebPageGridLayout,
-    WebPageTextBlock,
 } from "./InvertedProjectLayout";
 import { Logos } from "@/Components/shared/Logos";
 
@@ -72,14 +71,31 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
                                         {data.finished}
                                     </h2>
                                     <DetailedInfo
+                                        projectIndex={index}
                                         detailedInfo={
                                             data.detailedExplanation ?? []
                                         }
                                     />
                                 </MobileAppExtraInfo>
+                                <div className="w-full h-fit flex justify-start items-center gap-6 pl-2 mt-5">
+                                    <h2 className="tracking-widest text-cyan-400">
+                                        Github Repo
+                                    </h2>
+                                    <FloatingTrigger
+                                        $projectIndex={index}
+                                        onClick={handleClick}
+                                    >
+                                        <Logos.github />
+                                        {clicked && (
+                                            <FloatingMessage visible={errorNav}>
+                                                This repo is private
+                                            </FloatingMessage>
+                                        )}
+                                    </FloatingTrigger>
+                                </div>
                             </MobileAppTextBlock>
                         )}
-                        <div className="w-full min-h-[750px] gap-5">
+                        <DemoSection>
                             <MobileAppFlowWrapper>
                                 {data.video && (
                                     <FlowComp
@@ -89,21 +105,7 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
                                     />
                                 )}
                             </MobileAppFlowWrapper>{" "}
-                            <div className="w-full h-fit flex justify-end pr-32 pt-7">
-                                <FloatingTrigger
-                                    $projectIndex={index}
-                                    onClick={handleClick}
-                                    title="Github Repo"
-                                >
-                                    <Logos.github />
-                                    {clicked && (
-                                        <FloatingMessage visible={errorNav}>
-                                            This repo is private
-                                        </FloatingMessage>
-                                    )}
-                                </FloatingTrigger>
-                            </div>
-                        </div>
+                        </DemoSection>
                     </MobileGridLayout>
                 </>
             ) : (
@@ -122,7 +124,7 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
                                 ))}
                             </StackRow>
                         </WebPageTextBlock>
-                        <div className="w-full md:min-h-[500px]">
+                        <DemoSectionInvertedLayout>
                             <WebPageFlowWrapper>
                                 {data.video && (
                                     <FlowComp
@@ -132,21 +134,7 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
                                     />
                                 )}
                             </WebPageFlowWrapper>{" "}
-                            <div className="w-full h-fit flex justify-end mt-8">
-                                <FloatingTrigger
-                                    $projectIndex={index}
-                                    onClick={handleClick}
-                                    title="Github Repo"
-                                >
-                                    <Logos.github />
-                                    {clicked && (
-                                        <FloatingMessage visible={errorNav}>
-                                            This repo is private
-                                        </FloatingMessage>
-                                    )}
-                                </FloatingTrigger>
-                            </div>
-                        </div>
+                        </DemoSectionInvertedLayout>
                     </WebPageGridLayout>
                     <WebPageExtraInfo>
                         <div className="flex flex-col gap-1">
@@ -162,9 +150,26 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
                             {data.finished}
                         </h2>
                         <DetailedInfo
+                            projectIndex={index}
                             detailedInfo={data.detailedExplanation ?? []}
                         />
                     </WebPageExtraInfo>
+                    <div className="w-full h-fit flex justify-start items-center gap-6 pl-2 mt-5">
+                        <h2 className="tracking-widest text-cyan-400">
+                            Github Repo
+                        </h2>
+                        <FloatingTrigger
+                            $projectIndex={index}
+                            onClick={handleClick}
+                        >
+                            <Logos.github />
+                            {clicked && (
+                                <FloatingMessage visible={errorNav}>
+                                    This repo is private
+                                </FloatingMessage>
+                            )}
+                        </FloatingTrigger>
+                    </div>
                 </div>
             )}
         </>
@@ -172,21 +177,90 @@ export const ProjectLayout: React.FC<ProjectLayOut> = ({
 };
 
 export const MobileGridLayout = styled.div`
-    ${tw`w-full max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16`}
+    ${tw`w-full max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16`}
 
     @media (max-width: 805px) {
+        ${tw`flex flex-col-reverse gap-12`}
+    }
+    @media (max-width: 1000px) {
+        margin: 0px 20px 0px 20px;
+    }
+    @media (max-width: 945px) {
+        margin: 0px;
+    }
+    @media (max-width: 850px) {
         ${tw`flex flex-col-reverse gap-12`}
     }
 `;
 
 export const MobileAppTextBlock = styled.div`
-    ${tw`flex flex-col gap-6 ml-16`}
+    ${tw`flex flex-col gap-6 ml-24`}
 
     @media (max-width: 1472px) {
         gap 60px;
     }
+    @media (max-width: 1000px) {
+        gap 30px;
+        margin-left: 0px;
+    }
+`;
 
+export const WebPageTextBlock = styled.div`
+   ${tw`flex flex-col gap-6 ml-24`}
 
+    @media (max-width: 1472px) {
+        gap 60px;
+    }
+    @media (max-width: 1200px) {
+        gap 30px;
+        margin-left: 0px;
+        order: 0;
+    }
+`;
+
+export const DemoSection = styled.div`
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: 1000px) {
+        margin-right: 40px;
+    }
+    @media (max-width: 945px) {
+        margin-right: -5px;
+    }
+    @media (max-width: 850px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 65px;
+        margin-right: 0px;
+    }
+`;
+export const DemoSectionInvertedLayout = styled.div`
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 1200px) {
+        order: -1;
+    }
+    @media (max-width: 1200px) {
+        order: -1;
+    }
+    @media (max-width: 1000px) {
+        margin-right: 40px;
+    }
+    @media (max-width: 945px) {
+        margin-right: -5px;
+    }
+    @media (max-width: 850px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 65px;
+        margin-right: 0px;
+    }
 `;
 
 const HeaderRow = tw.div`flex justify-between items-center`;
@@ -203,14 +277,43 @@ const Description = tw.p`text-gray-400 text-base leading-relaxed`;
 const Explanation = tw.p`text-gray-300 text-sm leading-snug`;
 
 export const MobileAppFlowWrapper = styled.div`
-    ${tw`w-full max-w-[400px] aspect-video rounded-xl border min-h-[750px] border-white/10 bg-gray-900 shadow-lg relative mx-auto md:ml-16 z-20`}
+    ${tw`flex w-full aspect-video rounded-xl border px-2 py-2 max-h-[700px] border-section-contact-secondary bg-gray-900 shadow-lg relative mx-auto md:ml-16 z-20`}
 
-    @media (max-width: 805px) {
-        ${tw`mx-auto min-h-[300px]`}
+    @media (min-width: 1472px) {
+        ${tw`mx-auto min-h-[700px] max-w-[400px]`}
     }
-
-    @media (max-width: 445px) {
-        ${tw`min-h-[250px]`}
+    @media (max-width: 1471px) {
+        ${tw`mx-auto min-h-[700px] max-w-[400px]`}
+    }
+    @media (max-width: 1273px) {
+        ${tw`mx-auto min-h-[650px] max-w-[350px]`}
+    }
+    @media (max-width: 1080px) {
+        ${tw`mx-auto max-h-[620px] max-w-[320px] min-w-[320px]`}
+    }
+    @media (max-width: 480px) {
+        max-width: 70vw;
+        max-height: 60vh;
+    }
+    @media (max-width: 380px) {
+        min-width: 50vw;
+        min-height: 60vh;
+        margin: 0;
+    }
+    @media (max-width: 310px) {
+        min-width: 47vw;
+        min-height: 55vh;
+        margin: 0;
+    }
+    @media (max-width: 275px) {
+        min-width: 44vw;
+        min-height: 52vh;
+        margin: 0;
+    }
+    @media (max-width: 248px) {
+        min-width: 40vw;
+        min-height: 48vh;
+        margin: 0;
     }
 `;
 
@@ -224,8 +327,8 @@ const TechLogo = styled.div`
 
 `;
 
-export const MobileAppExtraInfo = styled.div`
-    ${tw`w-full flex flex-col justify-start gap-6 mt-28 px-2`}
+export const MobileAppExtraInfo = styled.div<{ index?: number }>`
+    ${tw`w-full flex flex-col justify-start gap-6 mt-14 px-2`}
 
     @media (max-width: 805px) {
         ${tw`mt-6`}
@@ -237,7 +340,7 @@ const Position = tw.h2`text-xl text-gray-50 tracking-widest font-bold`;
 const Time = tw.h3`text-md text-gray-50 tracking-wider pt-1`;
 
 export const FloatingTrigger = styled.div<{ $projectIndex: number }>`
-    ${tw`w-12 h-12 flex`}
+    ${tw`w-11 h-11 flex mb-3`}
     background: conic-gradient(
         from 180deg at 50% 50%,
         #00ffff 0%,
@@ -257,179 +360,38 @@ export const FloatingTrigger = styled.div<{ $projectIndex: number }>`
     @keyframes float {
         0%,
         100% {
-            transform: translateY(0px);
+            transform: translateY(-1px);
         }
         50% {
-            transform: translateY(-8px);
+            transform: translateY(6px);
         }
     }
-
-    @media (max-width: 1472px) {
-        bottom: -35rem;
-        right: 5rem;
-    }
-    @media (max-width: 1472px) {
-        bottom: -35rem;
-        right: 5rem;
-    }
-    @media (max-width: 1345px) {
-        bottom: -33rem;
-        right: 5rem;
-    }
-    @media (max-width: 1255px) {
-        bottom: -34rem;
-        right: 5rem;
-    }
-    @media (max-width: 1218px) {
-        bottom: -36rem;
-        right: 5rem;
-    }
-    @media (max-width: 1200px) {
-        bottom: -34rem;
-        right: 5rem;
-    }
-    @media (max-width: 1164px) {
-        bottom: -35rem;
-        right: 5rem;
-    }
-    @media (max-width: 1125px) {
-        bottom: -32rem;
-        right: 5rem;
-    }
-    @media (max-width: 1118px) {
-        bottom: -30rem;
-        right: 5rem;
-    }
-    @media (max-width: 1099px) {
-        bottom: -31rem;
-        right: 5rem;
-    }
-    @media (max-width: 1043px) {
-        bottom: -32rem;
-        right: 5rem;
-    }
-    @media (max-width: 1035px) {
-        bottom: -31rem;
-        right: 5rem;
-    }
-    @media (max-width: 947px) {
-        bottom: -32rem;
-        right: 5rem;
-    }
-    @media (max-width: 945px) {
-        bottom: -33rem;
-        right: 5rem;
-    }
-    @media (max-width: 940px) {
-        bottom: -34rem;
-        right: 5rem;
-    }
-    @media (max-width: 908px) {
-        bottom: -31rem;
-        right: 5rem;
-    }
-    @media (max-width: 905px) {
-        bottom: -29rem;
-        right: 5rem;
-    }
-    @media (max-width: 902px) {
-        bottom: -30rem;
-        right: 5rem;
-    }
-    @media (max-width: 890px) {
-        bottom: -28rem;
-        right: 5rem;
-    }
-    @media (max-width: 888px) {
-        bottom: -18rem;
-        right: 5rem;
-    }
-    @media (max-width: 860px) {
-        bottom: -16rem;
-        right: 5rem;
-    }
-    @media (max-width: 805px) {
-        top: 56rem;
-        right: 2rem;
-        width: 40px;
-        height: 40px;
-    }
-    @media (max-width: 689px) {
-        top: 54.5rem;
-        right: 2rem;
-        width: 40px;
-        height: 40px;
-    }
-    @media (max-width: 664px) {
-        top: 55rem;
-        right: 2rem;
-        width: 40px;
-        height: 40px;
-    }
-    @media (max-width: 652px) {
-        top: 54.5rem;
-        right: 2rem;
-    }
-    @media (max-width: 596px) {
-        top: 56.5rem;
-        right: 2rem;
-    }
-    @media (max-width: 586px) {
-        top: 54.5rem;
-        right: 2rem;
-    }
-    @media (max-width: 585px) {
-        top: 51.5rem;
-        right: 2rem;
-    }
-    @media (max-width: 550px) {
-        top: 51rem;
-        right: 2rem;
-    }
-    @media (max-width: 440px) {
-        top: 63rem;
-        right: 2rem;
-    }
-    @media (max-width: 436px) {
-        top: 63.5rem;
-        right: 2rem;
-    }
-    @media (max-width: 421px) {
-        top: 63rem;
-        right: 2rem;
-    }
-    @media (max-width: 411px) {
-        top: 63rem;
-        right: 2rem;
-    }
 `;
+
 export const FloatingMessage = styled.div<{ visible: boolean }>`
     ${tw`mt-2 text-sm text-white bg-transparent border-2 border-purple-900 px-4 py-2 w-40 rounded-md shadow-lg`}
     position: absolute;
-    right: -3rem;
-    bottom: -4.3rem;
+    left: 4rem;
+
     z-index: 10;
 
     opacity: ${({ visible }) => (visible ? 0.9 : 0)};
     transition: opacity 1.5s ease-in-out;
 
-    @media (max-width: 805px) {
-        right: 0;
-        bottom: -3rem;
+    @media (max-width: 435px) {
+        position: absolute;
+        left: 0;
+        top: 4rem;
+        right: 3rem;
     }
-    @media (max-width: 643px) {
-        right: 0;
-        bottom: -4.3rem;
+    @media (max-width: 360px) {
+        position: absolute;
+        top: 4rem;
+        left: -3.5rem;
     }
-    @media (max-width: 596px) {
-        right: 0;
-        bottom: -3rem;
-    }
-    @media (max-width: 583px) {
-        right: 0;
-        bottom: -4.3rem;
-    }
-    @media (max-width: 550px) {
-        display: none;
+    @media (max-width: 295px) {
+        position: absolute;
+        top: 4rem;
+        left: -6rem;
     }
 `;

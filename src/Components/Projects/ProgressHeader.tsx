@@ -116,7 +116,8 @@ const Wrapper = styled.div<{ $index: number; $sections: string[] }>`
     }
     @media (max-width: 440px) {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
         align-items: center;
         align-content: center;
         row-gap: 1rem;

@@ -38,8 +38,6 @@ export const images = {
     programming: new URL("./programming.svg", import.meta.url).href,
     videoGames: new URL("./videogames.svg", import.meta.url).href,
     linkedin: new URL("./linkedin.svg", import.meta.url).href,
-    facebook: new URL("./facebook.svg", import.meta.url).href,
-    instagram: new URL("./instagram.svg", import.meta.url).href,
 };
 
 export const demos = {

@@ -11,10 +11,10 @@ export const WorksInfo: WorkProps[] = [
     {
         firmName: "HOT2EAT",
         position: "FullStack Developer",
-        timeSpan: "Sept 2024 - Present",
+        timeSpan: "Sept 2024 - March 2025",
         responsabilities: "Development of a mobile application",
         explanation:
-            "Creation of a mobile application for Android devices with a user-friendly interface and a modern design, used by delivery drivers to track orders from production at each restaurant to the final customer destination",
+            "Creation of a mobile application for Android devices, used by HOT2EAT delivery drivers to track orders from production at each restaurant to the final customer destination",
         technologies: [
             "React Native",
             "NodeJs",
@@ -39,7 +39,7 @@ export const WorksInfo: WorkProps[] = [
         timeSpan: "Oct 2024 - Nov 2024 (Intern)",
         responsabilities: "Development of user authentication systems",
         explanation:
-            "Internship contract during which I developed a biometric user registration system, a push notification automation, and an admin application to manage and visualise data stored in a database.",
+            "Development of a user biometric registration system, a push notification automation, and an admin panel to manage and visualise data stored in a database.",
         technologies: [
             "PHP",
             "Fetch API",
@@ -67,31 +67,29 @@ export const ListOfSkills = [
             "HTML5",
             "CSS",
             "Typescript",
-            "Javascript",
+            "zod",
+            "EmailJS",
             "Shadcn",
             "React Paper",
             "Bootstrap",
             "Material UI",
             "Radix UI",
+            "Axios",
         ],
-    },
-    {
-        section: "API / Data-layer",
-        skillSet: [
-            "REST (Axios / Fetch API)",
-            "Mongoose",
-            "GraphQL(*)",
-            "Apollo Studio(*)",
-            "Apollo Client(*)",
-        ],
-    },
-    {
-        section: "Design && Visualization Tools",
-        skillSet: ["Figma(*)", "Blender(**)"],
     },
     {
         section: "Backend",
-        skillSet: ["Node.js", "Express"],
+        skillSet: [
+            "Node.js",
+            "Express",
+            "REST",
+            "GraphQL(*)",
+            "Mongoose",
+            "SSE",
+            "Web Push Api",
+            "WebAuthn",
+            "Sharp",
+        ],
     },
     {
         section: "Databases",
@@ -99,11 +97,17 @@ export const ListOfSkills = [
     },
     {
         section: "DevOps",
-        skillSet: ["AWS"],
+        skillSet: ["Railway", "AWS S3"],
     },
     {
         section: "Dev Tools",
-        skillSet: ["Git", "Android Studio(*)", "VS Code"],
+        skillSet: [
+            "Git",
+            "VS Code",
+            "Android Studio(*)",
+            "Xcode(**)",
+            "Apollo Studio(*)",
+        ],
     },
 ];
 
@@ -131,6 +135,7 @@ interface SectionNode {
 
 export interface DemoVideoProps {
     width?: string;
+    className: string;
 }
 
 export type Heading = string[] | Record<string, SectionNode>;
@@ -268,7 +273,7 @@ export const projectsData: ProjectProps[] = [
         finished: "Finished",
         description: "Mobile application",
         explanation:
-            "Creation of a mobile application for Android devices with a user-friendly interface and a modern design, used by delivery drivers to track orders from production at each restaurant to the final customer destination",
+            "Creation of a mobile application for Android devices with a user-friendly interface, used by delivery drivers to track orders from production at each restaurant to the final customer destination",
         GitHubSrc: null,
         roles: ["Frontend Developer / UI Designer"],
         images: ProjectImages.deliveryApp,

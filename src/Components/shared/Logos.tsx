@@ -162,20 +162,6 @@ export const Logos = {
             className="w-full h-full object-contain"
         />
     ),
-    facebook: () => (
-        <img
-            src={images.facebook}
-            alt="Facebook logo"
-            className="w-full h-full object-contain"
-        />
-    ),
-    instagram: () => (
-        <img
-            src={images.instagram}
-            alt="Instagram logo"
-            className="w-full h-full object-contain"
-        />
-    ),
     linkedin: () => (
         <img
             src={images.linkedin}

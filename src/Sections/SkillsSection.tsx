@@ -1,4 +1,3 @@
-import { DesignPatterns } from "@/Components/shared/DesignPatterns";
 import { ListOfSkills } from "@/data";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -24,7 +23,7 @@ export const SkillsSection: React.FC = () => {
             <div className="absolute top-20 left-1/2 inset-0 w-full h-full pointer-events-none z-0">
                 <div className="absolute w-[100%] h-12 bg-section-skills-secondary rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
-            <div className="flex flex-col-2 w-[100%] relative h-48 ">
+            <div className="flex flex-col-2 w-[95%] relative h-48  mb-5">
                 <div className="flex flex-1 flex-row items-end justify-center w-[90%]">
                     <HeaderContainer>
                         {headerAnimation === true ? (
@@ -34,7 +33,7 @@ export const SkillsSection: React.FC = () => {
                                 </Title>
 
                                 <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                                    <div className="absolute top-8 left-1/2 w-64 h-16 bg-section-skills-secondary rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
+                                    <div className="absolute top-8 left-1/2 w-64 h-16 bg-section-skills-highlight rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
                                 </div>
                             </Header>
                         ) : (
@@ -71,7 +70,7 @@ export const SkillsSection: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`relative flex flex-col self-center pt-8  mb-10 z-[10] gap-16 w-[90%] h-[100%] backdrop-hue-rotate-90 hue-rotate-15 pointer-events-none
+    ${tw`relative flex flex-col self-center pt-8 z-[10] mb-7 gap-24 w-[90%] h-[100%] backdrop-hue-rotate-90 hue-rotate-15 pointer-events-none
         [box-shadow: inset -100px 100px 5px black, -100px 100px 50px black, 100px 100px 50px black]`}
     background-repeat: no-repeat;
     opacity: 0.8;
@@ -87,21 +86,13 @@ const Container = styled.div`
             no-repeat top center,
         linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 140px)
             no-repeat bottom left,
-        url(${DesignPatterns.skillsDesign1}) no-repeat -28rem 5rem / contain;
-
-    &::before {
-        content: "";
-        ${tw`absolute inset-x-0 top-12 h-[60%] pointer-events-none`}
-        background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1),
-      transparent
-    );
-    }
-    @media (max-width: 1472px) {
+        @media (max-width: 1472px) {
         background: none;
         linear-grandient: none;
         opacity: 100;
+    }
+    @media (max-width: 1472px) {
+        margin-bottom: 50px;
     }
     @media (max-width: 760px) {
         padding-top: 0;
@@ -116,7 +107,7 @@ const HeaderContainer = styled.div`
     }
 `;
 export const ParalelLine = styled.hr`
-    ${tw` border-t border-[rgba(10, 90, 150, 1)] z-10 w-[3%] mt-6 self-center border-[0.08rem]`};
+    ${tw` border-t border-[rgb(14, 98, 110)] z-10 w-[3%] mt-6 self-center border-[0.08rem]`};
 
     @media (max-width: 1055px) {
         margin-top: 3%;
@@ -131,7 +122,7 @@ const Header = styled.span`
     text-sm font-bold z-10 tracking-[8px] text-center
     py-6 mt-6
 
-    border-r border-r-[rgba(100,150,255,1)]
+    border-r border-r-[rgb(14, 98, 110)]
     rounded-tr-[10px] rounded-br-[10px]
     overflow-hidden
   `}
@@ -146,8 +137,8 @@ const Header = styled.span`
       rgba(0,255,255,0.6) 40%,
       rgba(0,255,255,0.6) 45%,
       rgba(0,255,255,0.6) 55%,
-      rgba(0,255,255,0.6) 60%,
-      rgba(100,150,255,1) 100%
+      rgb(14, 98, 110) 60%,
+      rgb(14, 98, 110) 100%
     );
     }
 
@@ -160,8 +151,8 @@ const Header = styled.span`
       transparent 15%,
       rgba(0,255,255,0.6) 40%,
       rgba(0,255,255,0.6) 45%,
-      rgba(0,255,255,0.6) 70%,
-      rgba(100,150,255,1) 100%
+      rgb(14, 98, 110) 60%,
+      rgb(14, 98, 110) 100%
     );
     }
 `;
@@ -188,15 +179,7 @@ const Context = styled.span`
 `;
 
 const SkillsWrapper = styled.div`
-    ${tw`grid grid-cols-1 md:grid-cols-2 self-center gap-6 ml-14 w-[60%] z-10 pointer-events-auto`}
-
-    @media (max-width: 1420px) {
-        width: 70%;
-    }
-    @media (max-width: 800px) {
-        width: 70%;
-        margin-left: 0;
-    }
+    ${tw`grid grid-cols-1 md:grid-cols-2 self-center gap-6 w-[85%] z-10 pointer-events-auto`}
 `;
 
 const SkillSection = styled.div`
@@ -205,7 +188,7 @@ const SkillSection = styled.div`
     border: 1px solid rgba(0, 255, 255, 0.2);
     &:hover {
         transform: translateY(-4px) scale(1.02);
-        border-color: rgba(0, 255, 255, 0.6);
+        border-color: rgba(8, 190, 207, 0.8);
         box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
     }
 `;

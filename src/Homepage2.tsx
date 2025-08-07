@@ -4,7 +4,6 @@ import { AboutMe } from "./Sections/AboutMe";
 import { WelcomeSection } from "./Sections/WelcomeSection";
 import { WorkSection } from "./Sections/WorksSection";
 import { SkillsSection } from "./Sections/SkillsSection";
-import { QuickMessage } from "./Sections/QuickMessage";
 import { ProjectsSection } from "./Sections/ProjectsSection";
 import Contact from "./Sections/Contact";
 
@@ -30,9 +29,8 @@ const HomePage2: React.FC = () => {
                     <WelcomeSection />
                     <WorkSection />
                     <SkillsSection />
-                    <QuickMessage />
                     <ProjectsSection />
-                    <div className=" relative h-full w-full mt-[40rem]">
+                    <div className=" relative h-full w-full mt-[2rem]">
                         <AboutMe />
                     </div>
                     <Contact />

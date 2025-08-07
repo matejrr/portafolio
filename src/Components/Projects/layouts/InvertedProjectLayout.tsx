@@ -4,6 +4,7 @@ import DetailedInfo from "../DetailedInfo";
 import { FlowComp } from "../FlowComp";
 import tw, { styled } from "twin.macro";
 import {
+    DemoSection,
     FloatingMessage,
     FloatingTrigger,
     MobileAppExtraInfo,
@@ -25,13 +26,19 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
     index,
 }) => {
     const [clicked, setClicked] = useState(false);
-    const [visible, setVisible] = useState(false);
+
+    const [errorNav, setErrorNav] = useState(false);
 
     const handleClick = () => {
         setClicked(true);
-        setVisible(true);
+        if (!data.GitHubSrc) {
+            setErrorNav(true);
+        } else {
+            window.open(data.GitHubSrc, "_blank");
+        }
+
         setTimeout(() => {
-            setVisible(false);
+            setErrorNav(false);
         }, 3000);
     };
     return (
@@ -40,7 +47,7 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
                 <div className="flex flex-col w-full">
                     {" "}
                     <WebPageGridLayout>
-                        <div className="w-full md:min-h-[500px] gap-5">
+                        <DemoSection>
                             <WebPageFlowWrapper>
                                 {data.video && (
                                     <FlowComp
@@ -50,21 +57,7 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
                                     />
                                 )}
                             </WebPageFlowWrapper>{" "}
-                            <div className="w-full h-fit flex justify-end mt-8">
-                                <FloatingTrigger
-                                    $projectIndex={index}
-                                    onClick={handleClick}
-                                    title="Github Repo"
-                                >
-                                    <Logos.github />
-                                    {clicked && (
-                                        <FloatingMessage visible={visible}>
-                                            This repo is private
-                                        </FloatingMessage>
-                                    )}
-                                </FloatingTrigger>
-                            </div>
-                        </div>
+                        </DemoSection>
                         <WebPageTextBlock>
                             <HeaderRow>
                                 <Title>{data.projectName}</Title>
@@ -93,9 +86,26 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
                             {data.finished}
                         </h2>
                         <DetailedInfo
+                            projectIndex={index}
                             detailedInfo={data.detailedExplanation ?? []}
                         />
                     </WebPageExtraInfo>
+                    <div className="w-full h-fit flex justify-start items-center gap-6 pl-2 mt-5">
+                        <h2 className="tracking-widest text-cyan-400">
+                            Github Repo
+                        </h2>
+                        <FloatingTrigger
+                            $projectIndex={index}
+                            onClick={handleClick}
+                        >
+                            <Logos.github />
+                            {clicked && (
+                                <FloatingMessage visible={errorNav}>
+                                    This repo is private
+                                </FloatingMessage>
+                            )}
+                        </FloatingTrigger>
+                    </div>
                 </div>
             ) : (
                 <>
@@ -118,7 +128,7 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
                                 >
                                     <Logos.github />
                                     {clicked && (
-                                        <FloatingMessage visible={visible}>
+                                        <FloatingMessage visible={errorNav}>
                                             This repo is private
                                         </FloatingMessage>
                                     )}
@@ -153,6 +163,7 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
                                     {data.finished}
                                 </h2>
                                 <DetailedInfo
+                                    projectIndex={index}
                                     detailedInfo={
                                         data.detailedExplanation ?? []
                                     }
@@ -167,18 +178,29 @@ export const InvertedProjectLayout: React.FC<ProjectLayOut> = ({
 };
 
 export const WebPageGridLayout = styled.div`
-    ${tw`flex flex-wrap md:flex-nowrap w-full px-6 md:px-20 items-start`}
+    ${tw`w-full max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16`}
 
+    @media (max-width: 1200px) {
+        ${tw`grid-cols-1`}
+    }
     @media (max-width: 805px) {
         ${tw`flex-col-reverse`}
+    }
+    @media (max-width: 767px) {
+        ${tw`gap-6`}
     }
 `;
 
 export const WebPageTextBlock = styled.div`
-    ${tw`basis-1/3 shrink-0 flex flex-col gap-6 md:ml-12`}
+   ${tw`flex flex-col gap-6 ml-24`}
 
-    @media (max-width: 805px) {
-        ${tw`ml-0 basis-full`}
+    @media (max-width: 1472px) {
+        gap 60px;
+    }
+    @media (max-width: 1200px) {
+        gap 30px;
+        margin-left: 0px;
+        order: 0;
     }
 `;
 
@@ -196,13 +218,40 @@ const Description = tw.p`text-gray-400 text-base leading-relaxed`;
 const Explanation = tw.p`text-gray-300 text-sm leading-snug`;
 
 export const WebPageFlowWrapper = styled.div`
-    ${tw`w-full min-w-[300px] md:min-w-[800px] md:min-h-[500px] max-w-[800px] aspect-video rounded-xl bg-gray-900 border border-white/10 shadow-lg relative z-50 mx-auto`}
+    ${tw`flex aspect-video rounded-xl border max-h-[450px] border-section-contact-secondary bg-gray-900 shadow-lg overflow-hidden relative mx-auto z-20`}
 
-    @media (max-width: 860px) {
-        ${tw`max-w-full aspect-[16/9]`}
+    @media (min-width: 1472px) {
+        ${tw`mx-auto min-h-[400px]`}
+        box-sizing: border-box;
+    }
+    @media (max-width: 1471px) {
+        ${tw`mx-auto min-h-[380px]`}
+    }
+    @media (max-width: 1375px) {
+        ${tw`mx-auto min-h-[350px]`}
+    }
+    @media (max-width: 1265px) {
+        ${tw`mx-auto min-h-[320px]`}
+    }
+    @media (max-width: 1200px) {
+        ${tw`mx-auto w-auto min-h-[500px]`}
+    }
+    @media (max-width: 1060px) {
+        ${tw`mx-auto w-full`}
+    }
+    @media (max-width: 950px) {
+        ${tw`mx-auto min-h-[350px]`}
+    }
+    @media (max-width: 675px) {
+        ${tw`mx-auto min-h-[300px]`}
+    }
+    @media (max-width: 625px) {
+        ${tw`ml-0 mr-0 mt-10 mb-14 w-[90vw] min-h-[250px]`}
+    }
+    @media (max-width: 460px) {
+        ${tw`min-h-[200px]`}
     }
 `;
-
 const StackRow = tw.div`flex gap-6 flex-wrap mt-6`;
 
 const TechLogo = styled.div`
@@ -216,12 +265,9 @@ const TechLogo = styled.div`
 export const WebPageExtraInfo = styled.div`
     ${tw`w-[80%] flex flex-col gap-6 mt-10 z-50 ml-24`}
 
-    @media (max-width: 805px) {
-        margin-top: 15px;
-    }
-    @media (max-width: 445px) {
-        margin-top: 15px;
-        padding-right: 10px;
+    @media (max-width: 1200px) {
+        margin-left: 0px;
+        width: 100%;
     }
 `;
 

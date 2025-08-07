@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { projectsData } from "@/data";
-import { DesignPatterns } from "@/Components/shared/DesignPatterns";
 import { ProjectWrapper } from "@/Components/Projects/ProjectWrapper";
 
 const projectNames = projectsData.map((project) => project.projectName);
@@ -12,7 +11,7 @@ export const ProjectsSection: React.FC = () => {
 
     useEffect(() => {
         function handleAnimation() {
-            if (window.scrollY > 3020 && !headerAnimation) {
+            if (window.scrollY > 2400 && !headerAnimation) {
                 setHeaderAnimation(true);
             }
         }
@@ -21,10 +20,7 @@ export const ProjectsSection: React.FC = () => {
     }, [headerAnimation]);
 
     return (
-        <Container>
-            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                <div className="absolute top-3 left-2/2 w-[100px] h-24 bg-section-projects-primary rounded-full blur-3xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
-            </div>
+        <Container id="projects-section">
             <HeaderContainer>
                 <div className="flex flex-row gap-12 mt-28">
                     {headerAnimation ? (
@@ -85,10 +81,9 @@ export const ProjectsSection: React.FC = () => {
 
             <Projects>
                 {projectsData.map((project, index) => (
-                    <div
-                        className="w-full h-full"
-                        id={project?.projectName
-                            ?.toLowerCase()
+                    <MainSecDesign
+                        id={project
+                            .projectName!.toLowerCase()
                             .replace(/\s+/g, "-")}
                         key={index}
                     >
@@ -97,7 +92,7 @@ export const ProjectsSection: React.FC = () => {
                             projectIndex={index}
                             data={project}
                         />
-                    </div>
+                    </MainSecDesign>
                 ))}
             </Projects>
         </Container>
@@ -105,23 +100,37 @@ export const ProjectsSection: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`relative flex flex-col w-[93%] mt-14 h-auto self-center backdrop-hue-rotate-90 hue-rotate-0 items-center`}
-    z-index: 20;
-
-    @media (max-width: 1472px) {
-        gap: 100px;
-    }
-    @media (max-width: 760px) {
-        gap: 150px;
-    }
+    ${tw`relative flex flex-col mx-auto w-[93%] mt-4`}
+    gap: 6rem;
 `;
 
+const MainSecDesign = styled.section`
+    ${tw`relative w-full flex flex-col border border-transparent`}
+
+    border-image-source: linear-gradient(
+        to bottom,
+        rgba(125, 135, 255, 1) 0%,
+        rgba(133, 59, 206, 1) 100%
+    );
+    border-image-slice: 1;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: -1;
+    }
+`;
 const NavigationContainer = styled.div`
-    ${tw`relative flex flex-row w-full flex-1 mb-7 justify-center`}
+    ${tw`relative flex flex-row w-full flex-1 justify-center `}
 `;
 
 const NavigationMenu = styled.div`
-    ${tw`flex flex-1 flex-row gap-8 justify-center items-center z-20`}
+    ${tw`flex flex-1 flex-row gap-8 justify-center items-center z-20 mt-14 mb-6`}
 
     @media (max-width: 1024px) {
         font-size: 16px;
@@ -145,7 +154,7 @@ const NavigationMenu = styled.div`
 `;
 
 const ProjectName = styled.div`
-    ${tw`font-semibold tracking-[3px] text-white text-center w-fit cursor-pointer `}
+    ${tw`font-semibold tracking-[3.5px] text-white text-center w-fit cursor-pointer `}
 
     font-size: 0.85rem;
 
@@ -171,11 +180,11 @@ const ProjectName = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-    ${tw`relative w-full flex flex-col gap-4 flex-wrap pr-7 items-center justify-between`}
+    ${tw`relative w-full flex flex-col gap-4 flex-wrap items-center justify-between`}
     z-index: 10;
     filter: hue-rotate(20deg);
     width: 100%;
-    height: 54vh;
+    min-height: 30vh;
     overflow: hidden;
     z-index: 30;
     background: linear-gradient(
@@ -183,13 +192,14 @@ const HeaderContainer = styled.div`
             rgba(0, 0, 0, 1),
             rgba(0, 0, 0, 0) 25%
         ),
-        url(${DesignPatterns.skillsDesign2}) -12.5rem 0rem / contain no-repeat;
+
     background-size: auto 67vh;
     opacity: 0.8;
 
     @media (max-width: 1472px) {
         box-shadow: none;
         background: none;
+        min-height: auto;
     }
 
     @media (max-width: 1055px) {
@@ -209,7 +219,7 @@ const Header = styled.span`
     ${tw`
     flex flex-1 relative justify-center items-start
     text-sm font-bold z-0 tracking-[8px] text-center
-    py-6 pl-4
+    py-6
 
     border-r border-r-[rgba(133, 59, 206, 1)]
     rounded-tr-[10px] rounded-br-[10px]
@@ -288,7 +298,7 @@ const ContextMobile = styled.span`
 `;
 
 const SectionHeader = styled.span<{ $headerAnimation: boolean }>`
-    ${tw`font-bold tracking-[8px] pl-8`}
+    ${tw`font-bold tracking-[8px] px-4`}
     opacity: ${({ $headerAnimation }) => ($headerAnimation ? 1 : 0)};
     transition: opacity 0.8s ease-in-out, color 0.8s ease-in-out,
         text-shadow 0.8s ease-in-out;
@@ -297,13 +307,9 @@ const SectionHeader = styled.span<{ $headerAnimation: boolean }>`
 `;
 
 const Projects = styled.div`
-    ${tw`relative flex flex-col w-full gap-[42rem] items-center`}
+    ${tw`relative flex flex-col w-full gap-[4rem] items-center`}
 
     @media (max-width: 768px) {
-        gap: 10rem;
-    }
-
-    @media (max-width: 480px) {
-        gap: 6rem;
+        gap: 5rem;
     }
 `;
