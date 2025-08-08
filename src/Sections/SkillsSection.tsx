@@ -23,34 +23,32 @@ export const SkillsSection: React.FC = () => {
             <div className="absolute top-20 left-1/2 inset-0 w-full h-full pointer-events-none z-0">
                 <div className="absolute w-[100%] h-12 bg-section-skills-secondary rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
-            <div className="flex flex-col-2 w-[95%] relative h-48  mb-5">
-                <div className="flex flex-1 flex-row items-end justify-center w-[90%]">
-                    <HeaderContainer>
-                        {headerAnimation === true ? (
-                            <Header>
-                                <Title $headerAnimation={headerAnimation}>
-                                    SKILL SET
-                                </Title>
+            <div className="flex flex-col-2 relative h-48 mb-0 mt-5">
+                <HeaderContainer>
+                    {headerAnimation === true ? (
+                        <Header>
+                            <Title $headerAnimation={headerAnimation}>
+                                SKILL SET
+                            </Title>
 
-                                <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                                    <div className="absolute top-8 left-1/2 w-64 h-16 bg-section-skills-highlight rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
-                                </div>
-                            </Header>
-                        ) : (
-                            <Header>
-                                <Title $headerAnimation={headerAnimation}>
-                                    SKILL SET
-                                </Title>
-                            </Header>
-                        )}
-                        <ParalelLine />
-                        <Context>
-                            Skills used for less than one year are marked with
-                            an asterisk (*) / the recent ones are marked with
-                            double asterisk (**)
-                        </Context>
-                    </HeaderContainer>
-                </div>
+                            <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                                <div className="absolute top-8 left-1/2 w-64 h-16 bg-section-skills-highlight rounded-full blur-2xl opacity-40 transform -translate-x-1/2 -translate-y-1/2" />
+                            </div>
+                        </Header>
+                    ) : (
+                        <Header>
+                            <Title $headerAnimation={headerAnimation}>
+                                SKILL SET
+                            </Title>
+                        </Header>
+                    )}
+                    <ParalelLine />
+                    <Context>
+                        Skills used for less than one year are marked with an
+                        asterisk (*) / the recent ones are marked with double
+                        asterisk (**)
+                    </Context>
+                </HeaderContainer>
             </div>
 
             <SkillsWrapper>
@@ -70,27 +68,11 @@ export const SkillsSection: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`relative flex flex-col self-center pt-8 z-[10] mb-7 gap-24 w-[90%] h-[100%] backdrop-hue-rotate-90 hue-rotate-15 pointer-events-none
-        [box-shadow: inset -100px 100px 5px black, -100px 100px 50px black, 100px 100px 50px black]`}
+    ${tw`w-[93%] relative flex flex-col self-center mt-8 pt-8 z-[10] mb-7 gap-24 h-[100%] backdrop-hue-rotate-90 hue-rotate-15 pointer-events-none
+       `}
     background-repeat: no-repeat;
     opacity: 0.8;
-    background: linear-gradient(
-                to right,
-                rgba(0, 0, 0, 0.8) 0%,
-                transparent 100px
-            )
-            no-repeat left center,
-        linear-gradient(to left, rgba(0, 0, 0, 0.8) 0%, transparent 100px)
-            no-repeat right center,
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 50px)
-            no-repeat top center,
-        linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 140px)
-            no-repeat bottom left,
-        @media (max-width: 1472px) {
-        background: none;
-        linear-grandient: none;
-        opacity: 100;
-    }
+
     @media (max-width: 1472px) {
         margin-bottom: 50px;
     }
@@ -100,18 +82,16 @@ const Container = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-    ${tw`flex flex-row flex-1 gap-12 pr-7 items-center justify-between`}
+    ${tw`flex flex-row flex-1 gap-12 items-center justify-between`}
 
-    @media (max-width: 1055px) {
-        align-items: end;
+    @media (max-width: 760px) {
+        max-width: 75%;
+        margin: 0 auto;
     }
 `;
 export const ParalelLine = styled.hr`
     ${tw` border-t border-[rgb(14, 98, 110)] z-10 w-[3%] mt-6 self-center border-[0.08rem]`};
 
-    @media (max-width: 1055px) {
-        margin-top: 3%;
-    }
     @media (max-width: 760px) {
         display: none;
     }
@@ -154,6 +134,9 @@ const Header = styled.span`
       rgb(14, 98, 110) 60%,
       rgb(14, 98, 110) 100%
     );
+    }
+    @media (max-width: 760px) {
+        flex: 1 !important;
     }
 `;
 

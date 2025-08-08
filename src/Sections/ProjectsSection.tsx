@@ -22,7 +22,7 @@ export const ProjectsSection: React.FC = () => {
     return (
         <Container id="projects-section">
             <HeaderContainer>
-                <div className="flex flex-row gap-12 mt-28">
+                <div className="flex w-full flex-row gap-12 mt-28">
                     {headerAnimation ? (
                         <Header>
                             <SectionHeader $headerAnimation={headerAnimation}>
@@ -100,7 +100,7 @@ export const ProjectsSection: React.FC = () => {
 };
 
 const Container = styled.div`
-    ${tw`relative flex flex-col mx-auto w-[93%] mt-4`}
+    ${tw`relative self-center flex flex-col mx-auto w-[93%] mt-4`}
     gap: 6rem;
 `;
 
@@ -180,10 +180,9 @@ const ProjectName = styled.div`
 `;
 
 const HeaderContainer = styled.div`
-    ${tw`relative w-full flex flex-col gap-4 flex-wrap items-center justify-between`}
+    ${tw`relative w-full flex flex-1 flex-col gap-12 items-center justify-between`}
     z-index: 10;
     filter: hue-rotate(20deg);
-    width: 100%;
     min-height: 30vh;
     overflow: hidden;
     z-index: 30;
@@ -205,6 +204,11 @@ const HeaderContainer = styled.div`
     @media (max-width: 1055px) {
         align-items: center;
     }
+
+    @media (max-width: 760px) {
+    max-width: 75%;
+    margin: 0 auto;
+}
 `;
 
 const ParalelLine = styled.hr`
@@ -232,7 +236,7 @@ const Header = styled.span`
         background: linear-gradient(
       to right,
       transparent 0%,
-      transparent 25%,
+      transparent 15%,
       rgba(0, 102, 255, 0.6) 40%,
       rgba(0, 102, 255, 0.6) 45%,
       rgba(100, 69, 181, 0.5) 55%,
@@ -247,8 +251,8 @@ const Header = styled.span`
         ${tw`absolute left-0 bottom-0 w-full h-px pointer-events-none`}
         background: linear-gradient(
       to right,
-      transparent 17%,
-      transparent 17%,
+      transparent 0%,
+      transparent 15%,
       rgba(0, 102, 255, 0.6) 40%,
       rgba(0, 102, 255, 0.6) 45%,
        rgba(100, 69, 181, 0.5) 55%,
